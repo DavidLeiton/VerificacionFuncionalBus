@@ -1,0 +1,11 @@
+# Archivos de resultados y graficas
+results/*.csv
+results/*.png
+
+# Archivos de simulacion y temporales
+sim/
+xsim.dir/
+*.vcd
+*.log
+*.jou
+*.pb
