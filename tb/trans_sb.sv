@@ -39,6 +39,8 @@ class trans_sb #(parameter bits = 16);
     // Estos dos arrancan "vacios" 
     t_envio  = 0;
     latencia = 0;
+    print("Creado");
+
   endfunction
 
   //---------------------------------------------------------------------
@@ -48,6 +50,8 @@ class trans_sb #(parameter bits = 16);
   function void cerrar_con_envio(time t_tx);
     t_envio  = t_tx;
     latencia = t_recibido - t_envio;
+
+    print("cerrado"); 
   endfunction
 
   //---------------------------------------------------------------------
