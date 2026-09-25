@@ -1,42 +1,45 @@
 // --- Archivo: environment.sv ---
 class environment #(parameter bits = 16, parameter drvrs = 4);
   
-  // 1. Declaración de los componentes (Punteros)
+  // Declaración de los componentes (Punteros)
   agent      #(bits, drvrs) agnt;
   driver     #(bits, drvrs) drv;
   monitor    #(bits, drvrs) mon;
-  scoreboard #(bits, drvrs) sb;
-  checker    #(bits, drvrs) chk;
+  scoreboard #(drvrs)       sb;   
+  checker    #(bits)        chk;  
 
-  // 2. Creación de los buzones físicos (Las tuberías)
-  // Nota que aquí sí usamos new() al momento de declararlos
-  mailbox #(trans_bus #(bits, drvrs)) agnt_drv_mbx = new();
-  mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx  = new();
-  mailbox #(trans_bus #(bits, drvrs)) mon_chkr_mbx = new();
-  mailbox #(trans_sb  #(bits))        sb_chkr_mbx  = new();
+  //Creación de los buzones físicos
+  mailbox #(trans_bus)   agnt_drv_mbx = new();
+  mailbox #(trans_bus)   agnt_sb_mbx  = new();
+  mailbox #(obs_cruda_t) mon_chkr_mbx = new();
+  mailbox #(trans_sb)    chkr_sb_mbx  = new(); 
+
+  // El punter a los pines físicos
+  virtual bus_if vif;
 
   // 3. Constructor
-  // El buzón tst_agnt_mbx viene desde arriba (desde el Test)
-  function new(mailbox #(trans_bus #(bits, drvrs)) tst_agnt_mbx);
-    // Inicializamos cada componente pasándole las tuberías correspondientes
+  function new(virtual bus_if vif, mailbox #(trans_bus) tst_agnt_mbx);
+    this.vif = vif;
+    
+    // Inicializamos cada componente 
     agnt = new(tst_agnt_mbx, agnt_drv_mbx, agnt_sb_mbx);
-    drv  = new(agnt_drv_mbx);
-    mon  = new(mon_chkr_mbx);
-    sb   = new(agnt_sb_mbx, sb_chkr_mbx);
-    chk  = new(mon_chkr_mbx, sb_chkr_mbx);
+    drv  = new(this.vif, agnt_drv_mbx);
+    mon  = new(this.vif, mon_chkr_mbx);
+    chk  = new(mon_chkr_mbx, chkr_sb_mbx); 
+    sb   = new(agnt_sb_mbx, chkr_sb_mbx);
   endfunction
 
-  // 4. Tarea de ejecución
+  // Tarea de ejecución
   task run();
     $display("[%0t] [ENVIRONMENT] Arrancando todos los transactores...", $time);
     
-    // fork...join_none arranca todas las tareas en paralelo sin bloquear el Test
+    // fork...join_none arranca todas las tareas en paralelo sin bloquear
     fork
       agnt.run();
       drv.run();
       mon.run();
-      sb.run();
       chk.run();
+      sb.run(); // Inicia sus dos procesos de escucha en paralelo
     join_none
   endtask
 endclass
