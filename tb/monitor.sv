@@ -1,62 +1,145 @@
-// --- Archivo: monitor.sv ---
-// Parametrizado igual que el resto para mantener la consistencia
-class monitor #(parameter bits = 16, parameter drvrs = 4);
+//=============================================================================
+// monitor.sv - Bloque MONITOR (observador pasivo del bus)
+//
+// Arquitectura: Padre (monitor) + `DRVRS Hijos (monitor_child), cada uno
+// mirando el Bus Controller de un dispositivo. Los Hijos reportan a una
+// mailbox interna; el Padre retransmite hacia checker.sv sin modificar nada.
+//
+// AJUSTAR antes de compilar: nombre de interfaz/señales (bus_if, pop,
+// D_pop, pndng, reset) y macros DRVRS/PCKG_SZ para que coincidan con el
+// resto del proyecto.
+//=============================================================================
 
-  // 1. Mailbox de salida
-  // mon_chkr_mbx: Por aquí se envía el paquete observado en el hardware hacia el Checker.
-  mailbox #(trans_bus #(bits, drvrs)) mon_chkr_mbx;
-  
-  // TODO: Declarar virtual interface al DUT
-  // virtual bus_if vif;
+`ifndef MONITOR_SV
+`define MONITOR_SV
 
-  // 2. Constructor
-  function new(mailbox #(trans_bus #(bits, drvrs)) mc);
-    this.mon_chkr_mbx = mc;
+`ifndef DRVRS
+  `define DRVRS   4
+`endif
+`ifndef PCKG_SZ
+  `define PCKG_SZ 16
+`endif
+
+// Interfaz esperada (ya debe existir en el proyecto, compartida con el
+// Manejador):
+//
+//   interface bus_if (input bit clk);
+//     logic                reset;
+//     logic [`PCKG_SZ-1:0] D_pop [`DRVRS];
+//     logic                pop   [`DRVRS];
+//     logic                pndng [`DRVRS];
+//     clocking mon_cb @(posedge clk);
+//       input pop, D_pop, pndng;
+//     endclocking
+//   endinterface
+
+//-----------------------------------------------------------------------------
+// Observacion cruda: destino, dato, pndng y tiempo en el instante del pop.
+// Camino B: se arma completa en el constructor y no se modifica despues.
+//-----------------------------------------------------------------------------
+class mon_obs;
+  int                  bc_id;    // Hijo que capturo el evento (solo trazabilidad)
+  logic [`PCKG_SZ-1:0] raw_data; // Dato crudo tal como salio de D_pop
+  bit  [7:0]           dest;     // Destino: 8 bits altos de raw_data
+  bit                  pndng;    // Estado de pndng en el mismo instante
+  time                 t_obs;
+
+  function new(int bc_id, logic [`PCKG_SZ-1:0] raw_data, bit pndng, time t_obs);
+    this.bc_id    = bc_id;
+    this.raw_data = raw_data;
+    this.dest     = raw_data[`PCKG_SZ-1 -: 8];
+    this.pndng    = pndng;
+    this.t_obs    = t_obs;
   endfunction
 
-  // 3. Tarea principal
-  task run();
-    $display("[%0t] [MONITOR] Iniciando observacion del DUT...", $time);
+  function string to_string();
+    return $sformatf("[MON] t=%0t bc=%0d dest=%0h pndng=%0b data=%0h",
+                      t_obs, bc_id, dest, pndng, raw_data);
+  endfunction
+endclass
+
+
+//-----------------------------------------------------------------------------
+// Hijo: observa un unico Bus Controller. No decide ni filtra nada, solo
+// reporta el evento tal cual lo ve.
+//-----------------------------------------------------------------------------
+class monitor_child;
+  virtual bus_if     vif;
+  int                bc_id;
+  mailbox #(mon_obs) mon2parent;
+
+  function new(virtual bus_if vif, int bc_id, mailbox #(mon_obs) mon2parent);
+    this.vif        = vif;
+    this.bc_id      = bc_id;
+    this.mon2parent = mon2parent;
+  endfunction
+
+  task automatic run();
+    bit pop_d = 1'b0; // valor anterior de pop, para detectar flanco de subida
 
     forever begin
-      // Puntero para la transacción que vamos a reconstruir
-      trans_bus #(bits, drvrs) tr_observada;
-      
-      // TODO: Esperar el flanco de reloj de la interfaz virtual
-      // @(posedge vif.clk);
+      @(vif.mon_cb); // pop, D_pop y pndng muestreados en el mismo flanco
 
-      // Aquí deberás implementar la lógica para escanear todos los puertos de salida.
-      // Como hay varios 'drvrs', tienes que revisar cuál de ellos tiene un dato válido.
-      for (int i = 0; i < drvrs; i++) begin
-        
-        // TODO: Lógica física. Ejemplo conceptual:
-        // Si la señal 'pop' del dispositivo 'i' está en alto, significa que 
-        // ese dispositivo acaba de leer un dato del bus.
-        /*
-        if (vif.pop[i] == 1'b1) begin
-          // 1. Instanciamos el objeto
-          tr_observada = new();
-          
-          // 2. Llenamos los datos basándonos en los pines físicos
-          // El destino es el dispositivo 'i' que acaba de hacer pop.
-          tr_observada.destino = i; 
-          
-          // El payload es el valor del cable D_pop en ese instante[cite: 4]
-          tr_observada.payload = vif.D_pop[i]; 
-          
-          // NOTA: Dependiendo de tu protocolo, el 'origen' podría venir dentro 
-          // de los bits del payload, o el Checker tendrá que inferirlo.
+      if (vif.reset) begin
+        pop_d = 1'b0;
+        continue;
+      end
 
-          // 3. Enviamos el paquete al Checker
-          mon_chkr_mbx.put(tr_observada);
-          
-          $display("[%0t] [MONITOR] Paquete detectado en disp %0d. Enviando a Checker.", $time, i);
-        end
-        */
-      end // Fin del for
+      if (vif.mon_cb.pop[bc_id] && !pop_d) begin
+        mon_obs obs;
+        obs = new(.bc_id    (bc_id),
+                  .raw_data (vif.mon_cb.D_pop[bc_id]),
+                  .pndng    (vif.mon_cb.pndng[bc_id]),
+                  .t_obs    ($time));
+        mon2parent.put(obs);
+      end
 
-      #5; // Retardo temporal simulando el reloj (remover cuando uses la interfaz virtual)
+      pop_d = vif.mon_cb.pop[bc_id];
     end
   endtask
-
 endclass
+
+
+//-----------------------------------------------------------------------------
+// Padre: lanza los Hijos y retransmite sus observaciones hacia checker.sv.
+//-----------------------------------------------------------------------------
+class monitor;
+  virtual bus_if     vif;
+  mailbox #(mon_obs) mon2chk;      // hacia checker.sv
+  mailbox #(mon_obs) internal_mbx; // Hijos -> Padre
+  monitor_child      child[`DRVRS];
+
+  function new(virtual bus_if vif, mailbox #(mon_obs) mon2chk);
+    this.vif     = vif;
+    this.mon2chk = mon2chk;
+    internal_mbx = new();
+
+    foreach (child[i])
+      child[i] = new(.vif(vif), .bc_id(i), .mon2parent(internal_mbx));
+  endfunction
+
+  task automatic run();
+    foreach (child[i]) begin
+      automatic monitor_child c = child[i]; // evita compartir i entre forks
+      fork
+        c.run();
+      join_none
+    end
+    relay();
+  endtask
+
+  // Unico punto de salida: relay sin modificar + log opcional.
+  task automatic relay();
+    mon_obs obs;
+    forever begin
+      internal_mbx.get(obs);
+      `ifdef MON_DEBUG
+        $display(obs.to_string());
+      `endif
+      mon2chk.put(obs);
+    end
+  endtask
+endclass
+
+`endif // MONITOR_SV
+
