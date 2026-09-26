@@ -1,40 +1,65 @@
-// --- Archivo: trans_sb.sv ---
+`include "bus_defs.svh"
 
+//=============================================================================
+// trans_sb  (Checker -> Scoreboard, Test Plan Seccion 5)
+// Parametrizada con 'bits'.
+// 'bits' es un parametro de COMPILACION
+// del DUT (nunca cambia a mitad de una simulacion) 
+// CICLO DE VIDA:
+//   1) checker.sv construye el objeto cuando lo necesite 
+//       sabe: que dato salio, en que dispositivo, cuando, y con que
+//      resultado LOCAL (completado o underflow).
+//   2) t_envio y latencia NO los puede conocer el checker (nunca ve el original) 
+//   3) scoreboard.sv,  si guarda el t_envio de cuando recibio el
+//      trans_bus original, llama cerrar_con_envio() sobre el mismo
+//      objeto en el momento del match.
+//=============================================================================
 class trans_sb #(parameter bits = 16);
 
-  // Definición de tipos enumerados para el resultado
-  // Indica el estado final de este paquete tras pasar por el Checker.
-  typedef enum {completado, perdido, overflow, underflow} res_e; ]
+  // El checker sabe "Que y a quien"
+  bit [bits-1:0] dato_enviado;  // dato observado (crudo, incluye el byte de direccion)
+  int            destino;       // indice de dispositivo 0..drvrs-1 
+  resultado_e    resultado;     // COMPLETADO / UNDERFLOW (checker decide)
 
-  // Variables de seguimiento 
-  bit [bits-1:0] dato_enviado; // El payload que se espera ver a la salida
-  int t_envio;                 // Marca de tiempo ($time) cuando el Driver inyectó el dato
-  int t_recibido;              // Marca de tiempo ($time) cuando el Monitor vio salir el dato
-  int latencia;                // Diferencia entre t_recibido y t_envio
-  res_e resultado;             // El veredicto del Checker
+  // t_recibido lo pone el checker;
+  //  t_envio y latencia quedan para el scoreboard.sv
+  time t_recibido;
+  time t_envio;
+  time latencia;
 
-  // Constructor
-  
-  function new();
-    // Inicializamos con valores por defecto
-    dato_enviado = 0;
-    t_envio      = 0;
-    t_recibido   = 0;
-    latencia     = 0;
-    // Hasta que no se demuestre lo contrario, asumimos que está perdido
-    resultado    = perdido; 
+  //---------------------------------------------------------------------
+  // Constructor: Hasta que checker tenga 4 campos construye trans_sb
+  //---------------------------------------------------------------------
+  function new(bit [bits-1:0] dato, int dest, time t_rx, resultado_e res);
+    dato_enviado = dato;
+    destino      = dest;
+    t_recibido   = t_rx;
+    resultado    = res;
+
+    // Estos dos arrancan "vacios" 
+    t_envio  = 0;
+    latencia = 0;
+    print("Creado");
+
   endfunction
 
-  // Función de cálculo de métricas
-  function void calcular_latencia();
-    latencia = t_recibido - t_envio; 
+  //---------------------------------------------------------------------
+  // ESta funcion se llama cuando el scoreboard.sv, encuentra
+  // el trans_bus pendiente que le corresponde a este trans_sb. 
+  //---------------------------------------------------------------------
+  function void cerrar_con_envio(time t_tx);
+    t_envio  = t_tx;
+    latencia = t_recibido - t_envio;
+
+    print("cerrado"); 
   endfunction
 
-  // Función de utilidad para generar el reporte
-  // Muy útil para luego exportar estos datos al archivo CSV para GNUplot.
-  function void print_csv();
-    // Imprime en formato: Dato,Tiempo_Envio,Tiempo_Recibido,Latencia,Resultado
-    $display("%0h,%0d,%0d,%0d,%s", dato_enviado, t_envio, t_recibido, latencia, resultado.name());
+  //---------------------------------------------------------------------
+  // Una linea al log de simulacion, solo para debug 
+  //---------------------------------------------------------------------
+  function void print(string tag = "");
+    $display("[%0t] %s dest=%0d dato=0x%0h t_env=%0t t_rx=%0t lat=%0t res=%s",
+      $time, tag, destino, dato_enviado, t_envio, t_recibido, latencia, resultado.name());
   endfunction
 
-endclass
+endclass : trans_sb

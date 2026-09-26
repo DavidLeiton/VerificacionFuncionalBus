@@ -22,6 +22,7 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
   endfunction
 
   // Tarea independiente de este hijo para sacar datos e interactuar con los pines
+  // Tarea independiente de este hijo para sacar datos e interactuar con los pines
   task run();
     trans_bus #(bits, drvrs) tr_actual;
 
@@ -37,6 +38,9 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
         if (tr_actual.retardo > 0) begin
           repeat(tr_actual.retardo) @(vif.cb);
         end
+
+        // ---> NUEVA LÍNEA: Registrar el tiempo exacto de inyección <---
+        tr_actual.t_envio = $time;
 
         // Lógica de pines del DUT 
         // Levantar la señal de 'pndng' para este id específico
