@@ -89,7 +89,7 @@ class monitor_child;
         mon_obs obs;
         obs = new(.bc_id    (bc_id),
                   .raw_data (vif.cb.D_pop[0][bc_id]),
-                  .pndng    (vif.cb.pndng[0][bc_id]),
+                  .pndng    (vif.pndng[0][bc_id]),
                   .t_obs    ($time));
         mon2parent.put(obs);
       end
