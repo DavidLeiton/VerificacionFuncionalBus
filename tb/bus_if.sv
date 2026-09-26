@@ -18,18 +18,17 @@ interface bus_if #(
   logic [pckg_sz-1:0] D_push [bits-1:0][drvrs-1:0];
 
   //Temporización del cloking block (cb)
-  // Define cómo el software lee y escribe respecto al reloj del hardware
   clocking cb @(posedge clk);
-    default input #1ns output #1ns; // Tiempos de preparación (setup) y retención (hold)
-    
-    // Las direcciones son desde la perspectiva del Testbench hacia el DUT:
-    output pndng;
-    output D_pop;
-    
-    // Lo que es 'output' en el DUT, aquí es 'input'
-    input push;
-    input pop;
-    input D_push;
+    default input #1ns output #1ns; // Tiempos de preparacion (setup) y retencion (hold)
+
+    // Lo que genera el DUT, el Testbench lo recibe (input)
+    input pndng;
+    input D_pop;
+
+    // Lo que genera el Testbench, el DUT lo recibe (output)
+    output push;
+    output pop;
+    output D_push;
   endclocking
 
   
