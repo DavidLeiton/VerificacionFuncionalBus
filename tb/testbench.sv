@@ -26,10 +26,7 @@ module testbench;
   logic reset;
 
   // Instancia de la interfaz física
-  bus_if vif(
-    .clk(clk),
-    .reset(reset)
-  );
+  bus_if vif( .clk(clk) );
 
   // Instancia del DUT conectada a la interfaz
   bs_gnrtr_n_rbtr #(
