@@ -22,12 +22,12 @@ interface bus_if #(
     default input #1ns output #1ns; // Tiempos de preparacion (setup) y retencion (hold)
 
     // Lo que genera el DUT, el Testbench lo recibe (input)
-    input pndng;
+    input pop;
     input D_pop;
 
     // Lo que genera el Testbench, el DUT lo recibe (output)
     output push;
-    output pop;
+    output pndng;
     output D_push;
   endclocking
 
