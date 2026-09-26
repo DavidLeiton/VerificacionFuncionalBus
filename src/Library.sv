@@ -1,5 +1,5 @@
 `ifndef FIFOS
-   `include "../FIFO_Latches/fifo.sv"
+   `include "fifo.sv"
     `define FIFOS
 `endif
 
