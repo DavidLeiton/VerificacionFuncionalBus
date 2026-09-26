@@ -77,7 +77,7 @@ class monitor_child;
     bit pop_d = 1'b0; // valor anterior de pop, para detectar flan      co de subida
 
     forever begin
-      @(vif.mon_cb); // pop, D_pop y pndng muestreados en el mismo   flanco
+      @(vif.cb); // pop, D_pop y pndng muestreados en el mismo   flanco
 
       if (vif.reset) begin
         pop_d = 1'b0;
@@ -85,16 +85,16 @@ class monitor_child;
       end
 
       // SE AGREGA [0] a todas las lecturas de los pines físicos
-      if (vif.mon_cb.pop[0][bc_id] && !pop_d) begin
+      if (vif.cb.pop[0][bc_id] && !pop_d) begin
         mon_obs obs;
         obs = new(.bc_id    (bc_id),
-                  .raw_data (vif.mon_cb.D_pop[0][bc_id]),
-                  .pndng    (vif.mon_cb.pndng[0][bc_id]),
+                  .raw_data (vif.cb.D_pop[0][bc_id]),
+                  .pndng    (vif.cb.pndng[0][bc_id]),
                   .t_obs    ($time));
         mon2parent.put(obs);
       end
 
-      pop_d = vif.mon_cb.pop[0][bc_id];
+      pop_d = vif.cb.pop[0][bc_id];
     end
   endtask
 endclass
