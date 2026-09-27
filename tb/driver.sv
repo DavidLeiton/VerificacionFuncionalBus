@@ -35,29 +35,28 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
         tr_actual = cola_fifo.pop_front(); // Saca el primero de la cola (FIFO)
         
         // Evaluar y aplicar el retardo temporal del paquete antes de sacar
-        if (tr_actual.retardo > 0) begin
+        if (tr_actual.retardo > 0) 
           repeat(tr_actual.retardo) @(vif.cb);
-        end
+        
 
         // ---> NUEVA LÍNEA: Registrar el tiempo exacto de inyección <---
         tr_actual.t_envio = $time;
 
-        // Lógica de pines del DUT 
-        // Levantar la señal de 'pndng' para este id específico
-        vif.cb.pndng[0][this.id] <= 1'b1;
-        // Colocar el payload en 'D_push' de este id
-        vif.cb.D_push[0][this.id] <= tr_actual.payload;
+        // 1) Avisar que hay datos pendientes
+      vif.cb.pndng[0][this.id] <= 1'b1;
 
-        // Dar el pulso de 'push'
-        vif.cb.push[0][this.id] <= 1'b1;
-        
-        // Mantener el pulso durante exactamente 1 ciclo de reloj
-        @(vif.cb); 
-        
-        // Apagar las señales tras enviar el dato para dejar el bus limpio
-        vif.cb.push[0][this.id] <= 1'b0;
+      // 2) Esperar el grant del árbitro (pop) para ESTE id
+      do @(vif.cb); while (!vif.cb.pop[0][this.id]);
+
+      // 3) Entregar el dato por D_pop (ya NO por D_push)
+      vif.cb.D_pop[0][this.id] <= tr_actual.payload;
+
+      @(vif.cb);
+
+      // 4) Bajar pndng si no hay más datos para este dispositivo
+      if (cola_fifo.size() == 0)
         vif.cb.pndng[0][this.id] <= 1'b0;
-      end
+    end
     end
   endtask
 endclass
