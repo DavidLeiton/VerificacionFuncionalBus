@@ -18,6 +18,14 @@ class trans_bus #(parameter bits = 16, parameter drvrs = 4);
 
   // (Constraints)
   constraint c_origen  { origen >= 0; origen < drvrs; }
+
+
+  // NUEVO: fuerza que los tres escenarios aparezcan con pesos parecidos,
+  // sin importar que INVALIDA tenga muchísimas más combinaciones
+  // posibles de 'destino' (251) que VALIDA (~3) o BROADCAST (1).
+  constraint c_tipo_dist {
+    tipo dist { VALIDA := 34, BROADCAST := 33, INVALIDA := 33 };
+  }
   
   // Si es un paquete válido, el destino debe estar entre 0 y drvrs-1. 
   // Además, evitamos que un dispositivo se envíe un paquete a sí mismo.

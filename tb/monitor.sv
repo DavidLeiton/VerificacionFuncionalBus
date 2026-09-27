@@ -39,22 +39,30 @@
 //-----------------------------------------------------------------------------
 class mon_obs;
   int                  bc_id;    // Hijo que capturo el evento (solo trazabilidad)
+  evento_mon_e         evento;   // EVT_ENVIO (pop/D_pop) o EVT_LLEGADA (push/D_push)
   logic [`PCKG_SZ-1:0] raw_data; // Dato crudo tal como salio de D_pop
   bit  [7:0]           dest;     // Destino: 8 bits altos de raw_data
   bit                  pndng;    // Estado de pndng en el mismo instante
   time                 t_obs;
 
-  function new(int bc_id, logic [`PCKG_SZ-1:0] raw_data, bit pndng, time t_obs);
+  function new(int bc_id , evento_mon_e evento, logic [`PCKG_SZ-1:0] raw_data, bit pndng, time t_obs);
     this.bc_id    = bc_id;
+    this.evento   = evento;
     this.raw_data = raw_data;
     this.dest     = raw_data[`PCKG_SZ-1 -: 8];
     this.pndng    = pndng;
     this.t_obs    = t_obs;
+
+    if (evento == EVT_ENVIO)
+      this.dest = raw_data[`PCKG_SZ-1 -: 8]; // direccion embebida por el emisor
+    else
+      this.dest = bc_id;                      // en la llegada, el destino ES este Hijo
+
   endfunction
 
   function string to_string();
-    return $sformatf("[MON] t=%0t bc=%0d dest=%0h pndng=%0b data=%0h",
-                      t_obs, bc_id, dest, pndng, raw_data);
+    return $sformatf("[MON] t=%0t bc=%0d evento=%s dest=%0h pndng=%0b data=%0h",
+                      t_obs, bc_id, evento.name(), dest, pndng, raw_data);
   endfunction
 endclass
 
@@ -73,30 +81,45 @@ class monitor_child;
     this.bc_id      = bc_id;
     this.mon2parent = mon2parent;
   endfunction
+
     task automatic run();
-    bit pop_d = 1'b0; // valor anterior de pop, para detectar flan      co de subida
+    bit pop_d = 1'b0; // valor anterior de pop, para detectar flanco de subida
+    bit push_d = 1'b0; // valor anterior de push, idem para el lado de llegada
 
     forever begin
-      @(vif.cb); // pop, D_pop y pndng muestreados en el mismo   flanco
+      @(vif.cb); // pop, D_pop, push, D_push y pndng muestreados en el mismo flanco
 
       if (vif.reset) begin
         pop_d = 1'b0;
+        push_d = 1'b0;
         continue;
       end
 
       // SE AGREGA [0] a todas las lecturas de los pines físicos
       if (vif.mon_cb.pop[0][bc_id] && !pop_d) begin
-      mon_obs obs;
-      obs = new(.bc_id    (bc_id),
-                .raw_data (vif.mon_cb.D_pop[0][bc_id]),  // <- acá seguía vif.cb
-                .pndng    (vif.mon_cb.pndng[0][bc_id]),
-                .t_obs    ($time));
-      mon2parent.put(obs);
-    end
+        mon_obs obs;
+        obs = new(.bc_id    (bc_id),
+                  .evento   (EVT_ENVIO),
+                  .raw_data (vif.mon_cb.D_pop[0][bc_id]),
+                  .pndng    (vif.mon_cb.pndng[0][bc_id]),
+                  .t_obs    ($time));
+        mon2parent.put(obs);
+      end
+      // Lado LLEGADA: este dispositivo recibe (NUEVO)
+      if (vif.mon_cb.push[0][bc_id] && !push_d) begin
+        mon_obs obs;
+        obs = new(.bc_id    (bc_id),
+                  .evento   (EVT_LLEGADA),
+                  .raw_data (vif.mon_cb.D_push[0][bc_id]),
+                  .pndng    (1'b0),
+                  .t_obs    ($time));
+        mon2parent.put(obs);
+      end
 
-    pop_d = vif.mon_cb.pop[0][bc_id];
+      pop_d  = vif.mon_cb.pop[0][bc_id];
+      push_d = vif.mon_cb.push[0][bc_id];
     end
-  endtask
+    endtask
 endclass
 
 

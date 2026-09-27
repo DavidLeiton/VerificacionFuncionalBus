@@ -26,6 +26,9 @@ typedef enum {VALIDA, BROADCAST, INVALIDA} tipo_pkt_e;
 // Campo 'resultado' de trans_sb (Test Plan Seccion 5).
 typedef enum {COMPLETADO, PERDIDO, OVERFLOW, UNDERFLOW} resultado_e;
 
+//dice que es algo que llego o se mando
+typedef enum { EVT_ENVIO, EVT_LLEGADA } evento_mon_e;
+
 // Direccion de broadcast -- CONFIRMADA contra prll_intrfs_cntrl
 // (Library.sv): compara los 8 bits altos de D_push contra 8'hFF.
 parameter bit [7:0] BROADCAST_ADDR = 8'hFF;

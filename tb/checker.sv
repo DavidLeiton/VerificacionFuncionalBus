@@ -28,13 +28,21 @@ class checker #(parameter bits = 16);
     forever begin
       mon_chkr_mbx.get(obs);
 
-      // Adaptamos la lectura a las propiedades de mon_obs
-      res = obs.pndng ? COMPLETADO : UNDERFLOW;
-
-      // El constructor usa las propiedades correctas: raw_data, dest, t_obs
-      veredicto = new(obs.raw_data, obs.dest, obs.t_obs, res);
-
-      chkr_sb_mbx.put(veredicto);
+      if (obs.evento == EVT_ENVIO) begin
+        // Un envio normal (pndng=1) ya no se reporta aca: su
+        // confirmacion real ahora llega por EVT_LLEGADA. Este lado
+        // solo nos interesa para detectar la violacion de protocolo.
+        if (!obs.pndng) begin
+          res = UNDERFLOW;
+          veredicto = new(obs.raw_data, obs.dest, obs.t_obs, res);
+          chkr_sb_mbx.put(veredicto);
+        end
+      end
+      else begin // EVT_LLEGADA
+        res = COMPLETADO;
+        veredicto = new(obs.raw_data, obs.dest, obs.t_obs, res);
+        chkr_sb_mbx.put(veredicto);
+      end
     end
   endtask
 
