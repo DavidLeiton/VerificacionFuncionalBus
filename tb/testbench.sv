@@ -23,7 +23,7 @@ module testbench;
   parameter BROADCAST = {8{1'b1}};
 
   logic clk;
-  logic reset;
+  
 
   // Instancia de la interfaz física
   bus_if vif( .clk(clk) );
@@ -56,8 +56,8 @@ module testbench;
   // Bloque principal de ejecución
   initial begin
     // Reset inicial del sistema
-    reset = 1;
-    #20 reset = 0;
+    vif.reset = 1;
+    #20 vif.reset = 0;
 
     // Instanciar el Test pasándole la interfaz y arrancar la simulación
     t0 = new(vif);
