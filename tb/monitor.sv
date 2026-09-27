@@ -85,16 +85,16 @@ class monitor_child;
       end
 
       // SE AGREGA [0] a todas las lecturas de los pines físicos
-      if (vif.cb.pop[0][bc_id] && !pop_d) begin
-        mon_obs obs;
-        obs = new(.bc_id    (bc_id),
-                  .raw_data (vif.cb.D_pop[0][bc_id]),
-                  .pndng (vif.cb.pndng[0][bc_id]),   // leer a través del mismo clocking block, no directo
-                  .t_obs    ($time));
-        mon2parent.put(obs);
-      end
+      if (vif.mon_cb.pop[0][bc_id] && !pop_d) begin
+      mon_obs obs;
+      obs = new(.bc_id    (bc_id),
+                .raw_data (vif.mon_cb.D_pop[0][bc_id]),  // <- acá seguía vif.cb
+                .pndng    (vif.mon_cb.pndng[0][bc_id]),
+                .t_obs    ($time));
+      mon2parent.put(obs);
+    end
 
-      pop_d = vif.cb.pop[0][bc_id];
+    pop_d = vif.mon_cb.pop[0][bc_id];
     end
   endtask
 endclass
