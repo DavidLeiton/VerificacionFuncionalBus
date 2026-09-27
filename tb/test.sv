@@ -59,7 +59,18 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     env.run();
     
     // Control de finalización de prueba
-    #10000;
+    // Esperar a que el scoreboard confirme que no queda nada pendiente,
+    // con un tope de seguridad para no colgar la simulacion si alguna
+    // vez hay un problema real de starvation en el arbitro.
+    fork
+      begin
+        wait (env.sb.pendientes_totales() == 0);
+      end
+      begin
+        #8000000;
+      end
+    join_any
+    disable fork;
 
     env.sb.reportar_final(); 
     
