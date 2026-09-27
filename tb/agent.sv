@@ -54,7 +54,7 @@ class agent #(parameter bits = 16, parameter drvrs = 4);
       agnt_sb_mbx.put(tr);  // Al Scoreboard para registro de pendientes
       
       // Retardo artificial entre generaciones
-      #10; -
+      #10; 
     end
     
     $display("[%0t] [AGENTE] Finalizada la generacion.", $time);
