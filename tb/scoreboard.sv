@@ -102,18 +102,24 @@ class scoreboard #(
     trans_bus tb;
     forever begin
       chkr_sb_mbx.get(tsb);
-
+  
       if (tsb.resultado == UNDERFLOW) begin
         agregar_fila(0, 0, tsb.destino, tsb.t_recibido, 0, UNDERFLOW);
         continue;
       end
-
+  
+      if (tsb.destino >= drvrs) begin
+        $error("scoreboard: trans_sb con destino fuera de rango (%0d)", tsb.destino);
+        agregar_fila(0, 0, tsb.destino, tsb.t_recibido, 0, PERDIDO);
+        continue;
+      end
+  
       if (pendientes[tsb.destino].size() == 0) begin
         $error("scoreboard: trans_sb para destino %0d sin envio pendiente que matchear",
                tsb.destino);
         continue;
       end
-
+  
       tb = pendientes[tsb.destino].pop_front();
       tsb.cerrar_con_envio(tb.t_envio);
       agregar_fila(tb.t_envio, tb.origen, tsb.destino, tsb.t_recibido,

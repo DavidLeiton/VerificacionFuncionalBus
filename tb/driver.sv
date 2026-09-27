@@ -25,6 +25,7 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
   // Tarea independiente de este hijo para sacar datos e interactuar con los pines
   task run();
     trans_bus #(bits, drvrs) tr_actual;
+    bit [7:0] dir;
 
     forever begin // Ciclo infinito escuchando el reloj
       // Esperar el flanco de reloj sincronizado por el clocking block
@@ -41,22 +42,21 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
 
         // ---> NUEVA LÍNEA: Registrar el tiempo exacto de inyección <---
         tr_actual.t_envio = $time;
+        // Byte alto = direccion real (o BROADCAST_ADDR si es broadcast)
+        dir = (tr_actual.tipo == BROADCAST) ? BROADCAST_ADDR : tr_actual.destino[7:0];
 
-        // 1) Avisar que hay datos pendientes
-      vif.cb.pndng[0][this.id] <= 1'b1;
+        // Presentar D_pop y pndng juntos, ANTES de esperar el grant
+        vif.cb.D_pop[0][this.id] <= {dir, tr_actual.payload[bits-9:0]};
+        vif.cb.pndng[0][this.id] <= 1'b1;
 
-      // 2) Esperar el grant del árbitro (pop) para ESTE id
-      do @(vif.cb); while (!vif.cb.pop[0][this.id]);
+        // Esperar el grant del arbitro
+        do @(vif.cb); while (!vif.cb.pop[0][this.id]);
 
-      // 3) Entregar el dato por D_pop (ya NO por D_push)
-      vif.cb.D_pop[0][this.id] <= tr_actual.payload;
+        @(vif.cb);
 
-      @(vif.cb);
-
-      // 4) Bajar pndng si no hay más datos para este dispositivo
-      if (cola_fifo.size() == 0)
-        vif.cb.pndng[0][this.id] <= 1'b0;
-    end
+        if (cola_fifo.size() == 0)
+          vif.cb.pndng[0][this.id] <= 1'b0;
+      end
     end
   endtask
 endclass

@@ -34,6 +34,7 @@ class trans_bus #(parameter bits = 16, parameter drvrs = 4);
     
     if (tipo == INVALIDA) {
       destino >= drvrs; 
+      destino <= 254;
       destino != 255;   
     }
   }
