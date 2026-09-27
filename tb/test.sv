@@ -58,13 +58,18 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     // Arrancar el ambiente
     env.run();
     
-    // Control de finalización de prueba
-    // Esperar a que el scoreboard confirme que no queda nada pendiente,
-    // con un tope de seguridad para no colgar la simulacion si alguna
-    // vez hay un problema real de starvation en el arbitro.
+    // 1) Esperar a que el Agente termine de generar TODO (dirigidos + aleatorios)
+    //    antes de siquiera pensar en preguntar si algo esta pendiente.
+    @(env.agnt.fin_generacion);
+  
+    // 2) Recien ahora, drenar lo que haya quedado en curso, con un tope
+    //    de seguridad por si algo se atasca de verdad (starvation real).
     fork
       begin
-        wait (env.sb.pendientes_totales() == 0);
+        forever begin
+          if (env.sb.pendientes_totales() == 0) break;
+        #1000;
+        end
       end
       begin
         #8000000;

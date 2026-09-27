@@ -9,6 +9,8 @@ class agent #(parameter bits = 16, parameter drvrs = 4);
   // Variable de control para saber cuántas transacciones generar.
   int num_transacciones = 10; 
 
+  event fin_generacion; 
+
   // 2. Constructor
   function new(
     mailbox #(trans_bus) ta, 
@@ -52,10 +54,12 @@ class agent #(parameter bits = 16, parameter drvrs = 4);
       agnt_sb_mbx.put(tr);  // Al Scoreboard para registro de pendientes
       
       // Retardo artificial entre generaciones
-      #10; 
+      #10; -
     end
     
     $display("[%0t] [AGENTE] Finalizada la generacion.", $time);
+    -> fin_generacion;                // es seguro chequear pendientes
+  
   endtask
 
 endclass
