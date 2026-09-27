@@ -44,7 +44,11 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
         tr_actual.t_envio = $time;
         // Byte alto = direccion real (o BROADCAST_ADDR si es broadcast)
         dir = (tr_actual.tipo == BROADCAST) ? BROADCAST_ADDR : tr_actual.destino[7:0];
+        $display("[%0t] [DRIVER] id=%0d origen=%0d destino=%0d tipo=%s payload=0x%0h -> D_pop=0x%0h",
+          $time, this.id, tr_actual.origen, tr_actual.destino, tr_actual.tipo.name(),
+          tr_actual.payload, {dir, tr_actual.payload[bits-9:0]});
 
+          
         // Presentar D_pop y pndng juntos, ANTES de esperar el grant
         vif.cb.D_pop[0][this.id] <= {dir, tr_actual.payload[bits-9:0]};
         vif.cb.pndng[0][this.id] <= 1'b1;
