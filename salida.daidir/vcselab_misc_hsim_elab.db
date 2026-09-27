@@ -1,6 +1,6 @@
 psSimBaseName                      	salida
 psLogFileName                      	NULL
-pDaiDir                            	/mnt/vol_NFS_rh003/Est_Veri_II2026/ROMAN_RODRIGUEZ_WILBERT_VeriII26/VerificacionFuncionalBus/salida.daidir
+pDaiDir                            	/mnt/vol_NFS_rh003/Est_Veri_II2026/LEITON_FLORES_DAVID_VeriII26/Proyecto1/VerificacionFuncionalBus/salida.daidir
 destPath                           	csrc/
 fSharedMaster                      	0
 fHsimPCSharedLibSpecified          	0

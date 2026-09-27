@@ -1,6 +1,6 @@
 #!/bin/csh -f
 
-cd /mnt/vol_NFS_rh003/Est_Veri_II2026/ROMAN_RODRIGUEZ_WILBERT_VeriII26/VerificacionFuncionalBus
+cd /mnt/vol_NFS_rh003/Est_Veri_II2026/LEITON_FLORES_DAVID_VeriII26/Proyecto1/VerificacionFuncionalBus
 
 #This ENV is used to avoid overriding current script in next vcselab run 
 setenv SNPS_VCSELAB_SCRIPT_NO_OVERRIDE  1
