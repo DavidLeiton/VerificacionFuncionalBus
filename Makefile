@@ -28,3 +28,10 @@ grafico:
 
 limpiar:
 	rm -rf csrc simv.daidir *.key $(OUT_BIN) *.vpd DVEfiles *.fsdb vc_hdrs.h
+
+barrido_pckgsz: compilar
+	for sz in 8 16 32; do \
+	  vcs $(VCS_FLAGS) $(TB_FILE) -pvalue+testbench.PCKG_SZ=$$sz -pvalue+testbench.BITS=$$sz -o $(OUT_BIN)_sz$$sz; \
+	  ./$(OUT_BIN)_sz$$sz +ntb_random_seed=1; \
+	  cp reporte_paquetes.csv results/reporte_pckgsz$$sz.csv; \
+	done

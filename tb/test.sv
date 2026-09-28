@@ -28,6 +28,17 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     // Configurar el escenario
     env.agnt.num_transacciones = 200; //numero de transacciones   
 
+    // --- F13: reset con una transaccion a mitad de camino ---
+    // Va PRIMERO en la cola para que sea la unica cosa pendiente cuando
+    // se dispare el reset, sin contaminacion de otros casos.
+    caso = new();
+    caso.origen  = 3;
+    caso.destino = 0;
+    caso.tipo    = VALIDA;
+    caso.payload = 16'hC0DE;
+    caso.retardo = 0;
+    tst_agnt_mbx.put(caso);
+
     // Casos de esquina dirigidos ---
     caso = new();
     caso.origen  = 0;
@@ -82,6 +93,14 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     // Arrancar el ambiente
     env.run();
 
+    // Dar tiempo a que el driver levante pndng, pero muy por debajo de
+    // los ~140 ciclos que tarda una transaccion real en completarse:
+    // garantiza interrumpirla a mitad de camino, no antes ni despues.
+    #100;
+    vif.reset = 1;
+    #10;
+    vif.reset = 0;
+
      // caso de esquina UNDERFLOW ---
     // Observacion sintetica: pop en el dispositivo 1 con pndng=0.
     // raw_data=16'h0100 -> el byte alto (destino decodificado) es 1.
@@ -91,6 +110,9 @@ class test #(parameter bits = 16, parameter drvrs = 4);
                           .raw_data(16'h0100), .pndng(1'b0), .t_obs($time));
       env.mon_chkr_mbx.put(obs_underflow);
     end
+
+    
+
     
     // 1) Esperar a que el Agente termine de generar TODO (dirigidos + aleatorios)
     //    antes de siquiera pensar en preguntar si algo esta pendiente.
@@ -110,6 +132,12 @@ class test #(parameter bits = 16, parameter drvrs = 4);
       end
     join_any
     disable fork;
+
+    
+    $display("[%0t] [TEST] Cobertura arbitraje: %0.1f%%",
+              $time, env.chk.cg_arbitraje.get_inst_coverage());
+
+
 
     env.sb.reportar_final(); 
     

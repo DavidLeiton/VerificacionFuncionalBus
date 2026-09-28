@@ -6,7 +6,7 @@ class environment #(parameter bits = 16, parameter drvrs = 4);
   driver     #(bits, drvrs) drv;
   monitor                   mon;  // CORRECCIÓN: Se eliminaron los parámetros
   scoreboard #(drvrs)       sb;   
-  checker    #(bits)        chk;  
+  checker    #(bits, drvrs)        chk;  
 
   // Creación de los buzones físicos
   mailbox #(trans_bus) agnt_drv_mbx = new();
