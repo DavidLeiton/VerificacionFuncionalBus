@@ -36,6 +36,8 @@ class scoreboard #(
   // Una cola de pendientes por dispositivo destino.
   protected trans_bus pendientes[drvrs][$];
 
+  protected trans_bus invalidas[$];
+
   typedef struct {
     time        t_envio;
     bit [7:0]   origen;
@@ -90,8 +92,9 @@ class scoreboard #(
       end
       else begin
         // Direccion que no corresponde a ningun dispositivo real: no
-        // existe FIFO fisica que algun dia lo entregue.
-        agregar_fila(tb.t_envio, tb.origen, tb.destino, 0, 0, PERDIDO);
+        // existe FIFO fisica que algun dia lo entregue. Se guarda para
+        // reportarlo al final, cuando el driver ya le puso su t_envio.
+        invalidas.push_back(tb);
       end
     end
   endtask
@@ -141,8 +144,8 @@ class scoreboard #(
       for (int j = 0; j < pendientes[d].size(); j++) begin
         if (pendientes[d][j].t_envio != 0 &&
             palabra_esperada(pendientes[d][j]) == tsb.dato_enviado) begin
-          idx = j;
-          break;
+          if (idx < 0 || pendientes[d][j].t_envio < pendientes[d][idx].t_envio)
+            idx = j;
         end
       end
 
@@ -174,6 +177,9 @@ class scoreboard #(
     reporte.push_back(fila);
   endfunction
 
+  foreach (invalidas[k])
+    agregar_fila(invalidas[k].t_envio, invalidas[k].origen, invalidas[k].destino, 0, 0, PERDIDO);  
+
   //---------------------------------------------------------------------
   // Cierre de simulacion: cualquier pendiente que sobreviva hasta aca es
   // un envio que nunca encontro su llegada (PERDIDO), y se vuelca todo
@@ -189,6 +195,10 @@ class scoreboard #(
         agregar_fila(tb.t_envio, tb.origen, i, 0, 0, PERDIDO);   // <-- 'i', no 'tb.destino'
       end
     end
+
+    foreach (invalidas[k])
+      agregar_fila(invalidas[k].t_envio, invalidas[k].origen,
+                  invalidas[k].destino, 0, 0, PERDIDO);
 
     fd = $fopen(csv_path, "w");
     if (fd == 0) begin
@@ -209,6 +219,7 @@ class scoreboard #(
   function int pendientes_totales();
     int total = 0;
     foreach (pendientes[i]) total += pendientes[i].size();
+    foreach (invalidas[k]) if (invalidas[k].t_envio == 0) total++;  
     return total;
   endfunction
   
