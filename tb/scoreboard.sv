@@ -71,7 +71,7 @@ class scoreboard #(
   // verdad. Aca se decide, sin esperar nada, si el envio tiene chance de
   // llegar (se encola) o nunca la va a tener (PERDIDO inmediato).
   //---------------------------------------------------------------------
-  protected task escuchar_envios();
+    protected task escuchar_envios();
     trans_bus tb;
     forever begin
       agnt_sb_mbx.get(tb);
@@ -79,7 +79,11 @@ class scoreboard #(
       if (tb.destino == broadcast) begin
         // Un solo envio, un receptor por dispositivo: mismo handle en
         // todas las colas, cada una se resuelve despues por separado.
-        foreach (pendientes[i]) pendientes[i].push_back(tb);
+        // El emisor NO se encola: un dispositivo nunca recibe su propio
+        // broadcast, asi que esa copia quedaria PERDIDO para siempre.
+        foreach (pendientes[i])
+          if (i != tb.origen)
+            pendientes[i].push_back(tb);
       end
       else if (tb.destino < drvrs) begin
         pendientes[tb.destino].push_back(tb);
@@ -178,5 +182,6 @@ class scoreboard #(
     foreach (pendientes[i]) total += pendientes[i].size();
     return total;
   endfunction
+  
 
 endclass
