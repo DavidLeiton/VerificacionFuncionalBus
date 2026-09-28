@@ -177,8 +177,6 @@ class scoreboard #(
     reporte.push_back(fila);
   endfunction
 
-  foreach (invalidas[k])
-    agregar_fila(invalidas[k].t_envio, invalidas[k].origen, invalidas[k].destino, 0, 0, PERDIDO);  
 
   //---------------------------------------------------------------------
   // Cierre de simulacion: cualquier pendiente que sobreviva hasta aca es
@@ -192,13 +190,14 @@ class scoreboard #(
     foreach (pendientes[i]) begin
       while (pendientes[i].size() > 0) begin
         trans_bus tb = pendientes[i].pop_front();
-        agregar_fila(tb.t_envio, tb.origen, i, 0, 0, PERDIDO);   // <-- 'i', no 'tb.destino'
+        agregar_fila(tb.t_envio, tb.origen, i, 0, 0, PERDIDO);
       end
     end
 
+    // Paquetes INVALIDA: se reportan aca porque el driver ya les puso t_envio
     foreach (invalidas[k])
       agregar_fila(invalidas[k].t_envio, invalidas[k].origen,
-                  invalidas[k].destino, 0, 0, PERDIDO);
+                   invalidas[k].destino, 0, 0, PERDIDO);
 
     fd = $fopen(csv_path, "w");
     if (fd == 0) begin
@@ -219,9 +218,8 @@ class scoreboard #(
   function int pendientes_totales();
     int total = 0;
     foreach (pendientes[i]) total += pendientes[i].size();
-    foreach (invalidas[k]) if (invalidas[k].t_envio == 0) total++;  
+    foreach (invalidas[k]) if (invalidas[k].t_envio == 0) total++;
     return total;
   endfunction
-  
 
 endclass
