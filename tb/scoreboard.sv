@@ -96,6 +96,17 @@ class scoreboard #(
     end
   endtask
 
+
+    // Palabra que el driver puso en D_pop para este trans_bus: byte alto =
+  // direccion (broadcast si es BROADCAST), byte bajo = payload. El DUT la
+  // entrega igual por D_push, asi que sirve para reconocer el paquete.
+  protected function bit [15:0] palabra_esperada(trans_bus tb);
+    bit [7:0] dir;
+    dir = (tb.tipo == BROADCAST) ? broadcast : tb.destino[7:0];
+    return {dir, tb.payload[7:0]};
+  endfunction
+
+
   //---------------------------------------------------------------------
   // Lado "actual": checker.sv confirma que algo llego. UNDERFLOW no
   // tiene un trans_bus real detras (fue una lectura sin dato pendiente),
@@ -104,6 +115,8 @@ class scoreboard #(
   protected task escuchar_llegadas();
     trans_sb  tsb;
     trans_bus tb;
+    int       d;
+    int       idx;
     forever begin
       chkr_sb_mbx.get(tsb);
 
@@ -118,15 +131,31 @@ class scoreboard #(
         continue;
       end
 
-      if (pendientes[tsb.destino].size() == 0) begin
-        $error("scoreboard: trans_sb para destino %0d sin envio pendiente que matchear",
-               tsb.destino);
+      d = tsb.destino;
+
+      // Buscar, entre los pendientes de este destino, el primero que ya
+      // se transmitio (t_envio != 0) y cuya palabra coincide con la que
+      // llego. Ya no se asume que las llegadas respetan el orden de
+      // generacion.
+      idx = -1;
+      for (int j = 0; j < pendientes[d].size(); j++) begin
+        if (pendientes[d][j].t_envio != 0 &&
+            palabra_esperada(pendientes[d][j]) == tsb.dato_enviado) begin
+          idx = j;
+          break;
+        end
+      end
+
+      if (idx < 0) begin
+        $error("scoreboard: llegada a destino %0d (dato 0x%0h) sin envio pendiente que coincida",
+               d, tsb.dato_enviado);
         continue;
       end
 
-      tb = pendientes[tsb.destino].pop_front();
+      tb = pendientes[d][idx];
+      pendientes[d].delete(idx);
       tsb.cerrar_con_envio(tb.t_envio);
-      agregar_fila(tb.t_envio, tb.origen, tsb.destino, tsb.t_recibido,
+      agregar_fila(tb.t_envio, tb.origen, d, tsb.t_recibido,
                    tsb.t_recibido - tb.t_envio, COMPLETADO);
     end
   endtask
