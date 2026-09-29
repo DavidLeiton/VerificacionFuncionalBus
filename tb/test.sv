@@ -131,7 +131,7 @@ class test #(parameter bits = 16, parameter drvrs = 4);
         end
       end
       begin
-        #8000000;
+        #40000000;
       end
     join_any
     disable fork;
