@@ -9,16 +9,16 @@ class environment #(parameter bits = 16, parameter drvrs = 4);
   checker    #(bits, drvrs)        chk;  
 
   // Creación de los buzones físicos
-  mailbox #(trans_bus) agnt_drv_mbx = new();
-  mailbox #(trans_bus) agnt_sb_mbx  = new();
+  mailbox #(trans_bus #(bits, drvrs)) agnt_drv_mbx = new();
+  mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx  = new();
   mailbox #(mon_obs)   mon_chkr_mbx = new(); // CORRECCIÓN: Tipo actualizado a mon_obs
-  mailbox #(trans_sb)  chkr_sb_mbx  = new(); 
+  mailbox #(trans_sb #(bits, drvrs))  chkr_sb_mbx  = new(); 
 
   // El puntero a los pines físicos
   virtual bus_if vif;
 
   // 3. Constructor
-  function new(virtual bus_if vif, mailbox #(trans_bus) tst_agnt_mbx);
+  function new(virtual bus_if vif, mailbox #(trans_bus #(bits, drvrs)) tst_agnt_mbx);
     this.vif = vif;
     
     // Inicializamos cada componente 

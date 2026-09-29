@@ -45,22 +45,17 @@ class checker #(parameter bits = 16, parameter drvrs = 4);
         ganador_actual   = obs.bc_id;
         if (ganador_anterior != -1)
           cg_arbitraje.sample();
+
+          // Un envio normal (pndng=1) ya no se reporta aca: su
+        // confirmacion real ahora llega por EVT_LLEGADA. Este lado
+        // solo nos interesa para detectar la violacion de protocolo.
       
         if (!obs.pndng) begin
           veredicto = new(obs.raw_data, obs.dest, obs.t_obs, UNDERFLOW);
           chkr_sb_mbx.put(veredicto);
         end
 
-        // Un envio normal (pndng=1) ya no se reporta aca: su
-        // confirmacion real ahora llega por EVT_LLEGADA. Este lado
-        // solo nos interesa para detectar la violacion de protocolo.
 
-
-        if (!obs.pndng) begin
-          res = UNDERFLOW;
-          veredicto = new(obs.raw_data, obs.dest, obs.t_obs, res);
-          chkr_sb_mbx.put(veredicto);
-        end
       end
       else begin // EVT_LLEGADA
         res = COMPLETADO;

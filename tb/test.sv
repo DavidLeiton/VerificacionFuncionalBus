@@ -5,7 +5,7 @@ class test #(parameter bits = 16, parameter drvrs = 4);
   environment #(bits, drvrs) env;
   
   // El buzón principal 
-  mailbox #(trans_bus) tst_agnt_mbx = new();
+  mailbox #(trans_bus #(bits, drvrs)) tst_agnt_mbx = new();
   
   // Puntero a pines fisicos
   virtual bus_if vif;

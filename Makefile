@@ -31,7 +31,9 @@ limpiar:
 
 barrido_pckgsz: compilar
 	mkdir -p results
+	set -e; \
 	for sz in 16 32 64; do \
+	  rm -f reporte_paquetes.csv; \
 	  vcs $(VCS_FLAGS) $(TB_FILE) \
 	    -pvalue+testbench.PCKG_SZ=$$sz \
 	    -pvalue+testbench.BITS=$$sz \

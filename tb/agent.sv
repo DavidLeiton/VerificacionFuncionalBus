@@ -2,9 +2,9 @@
 class agent #(parameter bits = 16, parameter drvrs = 4);
 
   // 1. Declaración de los canales de comunicación (Buzones)
-  mailbox #(trans_bus) tst_agnt_mbx;  // Entrada: Del Test hacia el Agente (comandos/control)
-  mailbox #(trans_bus) agnt_drv_mbx;  // Salida: Hacia el Driver (para inyectar en hardware)
-  mailbox #(trans_bus) agnt_sb_mbx;   // Salida: Hacia el Scoreboard (copia dorada)
+  mailbox #(trans_bus #(bits, drvrs)) tst_agnt_mbx;  // Entrada: Del Test hacia el Agente (comandos/control)
+  mailbox #(trans_bus #(bits, drvrs)) agnt_drv_mbx;  // Salida: Hacia el Driver (para inyectar en hardware)
+  mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx;   // Salida: Hacia el Scoreboard (copia dorada)
 
   // Variable de control para saber cuántas transacciones generar.
   int num_transacciones = 10; 
@@ -13,9 +13,9 @@ class agent #(parameter bits = 16, parameter drvrs = 4);
 
   // 2. Constructor
   function new(
-    mailbox #(trans_bus) ta, 
-    mailbox #(trans_bus) ad, 
-    mailbox #(trans_bus) asb
+    mailbox #(trans_bus #(bits, drvrs)) ta, 
+    mailbox #(trans_bus #(bits, drvrs)) ad, 
+    mailbox #(trans_bus #(bits, drvrs)) asb
   );
     this.tst_agnt_mbx = ta;
     this.agnt_drv_mbx = ad;
@@ -24,7 +24,7 @@ class agent #(parameter bits = 16, parameter drvrs = 4);
 
   // 3. Tarea principal de ejecución (Actúa como Generador + Enrutador)
   task run();
-    trans_bus tr_dirigido;
+    trans_bus #(bits, drvrs) tr_dirigido;
 
     $display("[%0t] [AGENTE] Iniciando generacion de %0d estimulos...", $time, num_transacciones);
 
@@ -39,7 +39,7 @@ class agent #(parameter bits = 16, parameter drvrs = 4);
 
 
     for (int i = 0; i < num_transacciones; i++) begin
-      trans_bus tr;
+      trans_bus #(bits, drvrs) tr;
       
       // A. Construir el objeto en memoria
       tr = new();

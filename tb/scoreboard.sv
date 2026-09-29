@@ -31,13 +31,13 @@ class scoreboard #(
 );
 
   // Entradas: una mailbox por cada mitad de la historia.
-  protected mailbox #(trans_bus) agnt_sb_mbx;  // intencion (agente/driver)
-  protected mailbox #(trans_sb)  chkr_sb_mbx;  // hecho     (checker)
+  protected mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx;  // intencion (agente/driver)
+  protected mailbox #(trans_sb #(bits))  chkr_sb_mbx;  // hecho     (checker)
 
   // Una cola de pendientes por dispositivo destino.
-  protected trans_bus pendientes[drvrs][$];
+  protected trans_bus #(bits, drvrs) pendientes[drvrs][$];
 
-  protected trans_bus invalidas[$];
+  protected trans_bus #(bits, drvrs) invalidas[$];
 
   typedef struct {
     time        t_envio;
@@ -51,8 +51,8 @@ class scoreboard #(
   protected fila_reporte_t reporte[$];
   protected string         csv_path;
 
-  function new(mailbox #(trans_bus) agnt_sb_mbx,
-               mailbox #(trans_sb)  chkr_sb_mbx,
+  function new(mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx,
+               mailbox #(trans_sb #(bits))  chkr_sb_mbx,
                string csv_path = "reporte_paquetes.csv");
     this.agnt_sb_mbx = agnt_sb_mbx;
     this.chkr_sb_mbx = chkr_sb_mbx;
@@ -75,7 +75,7 @@ class scoreboard #(
   // llegar (se encola) o nunca la va a tener (PERDIDO inmediato).
   //---------------------------------------------------------------------
     protected task escuchar_envios();
-    trans_bus tb;
+    trans_bus #(bits, drvrs) tb;
     forever begin
       agnt_sb_mbx.get(tb);
 
@@ -104,7 +104,7 @@ class scoreboard #(
     // Palabra que el driver puso en D_pop para este trans_bus: byte alto =
   // direccion (broadcast si es BROADCAST), byte bajo = payload. El DUT la
   // entrega igual por D_push, asi que sirve para reconocer el paquete.
-  protected function bit [bits-1:0] palabra_esperada(trans_bus tb);
+  protected function bit [bits-1:0] palabra_esperada(trans_bus #(bits, drvrs) tb);
     bit [7:0] dir;
     dir = (tb.tipo == BROADCAST) ? broadcast : tb.destino[7:0];
     return {dir, tb.payload[bits-9:0]};
@@ -117,8 +117,8 @@ class scoreboard #(
   // asi que se reporta directo, sin tocar las colas.
   //---------------------------------------------------------------------
   protected task escuchar_llegadas();
-    trans_sb  tsb;
-    trans_bus tb;
+    trans_sb  #(bits) tsb;
+    trans_bus #(bits, drvrs) tb;
     int       d;
     int       idx;
     forever begin
@@ -190,7 +190,7 @@ class scoreboard #(
 
     foreach (pendientes[i]) begin
       while (pendientes[i].size() > 0) begin
-        trans_bus tb = pendientes[i].pop_front();
+        trans_bus #(bits, drvrs) tb = pendientes[i].pop_front();
         agregar_fila(tb.t_envio, tb.origen, i, 0, 0, PERDIDO);
       end
     end
