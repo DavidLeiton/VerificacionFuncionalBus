@@ -93,15 +93,8 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     // Arrancar el ambiente
     env.run();
 
-    // Dar tiempo a que el driver levante pndng, pero muy por debajo de
-    // los ~140 ciclos que tarda una transaccion real en completarse:
-    // garantiza interrumpirla a mitad de camino, no antes ni despues.
-    #100;
-    vif.reset = 1;
-    #10;
-    vif.reset = 0;
 
-     // caso de esquina UNDERFLOW ---
+    // caso de esquina UNDERFLOW ---
     // Observacion sintetica: pop en el dispositivo 1 con pndng=0.
     // raw_data=16'h0100 -> el byte alto (destino decodificado) es 1.
     begin
@@ -110,6 +103,16 @@ class test #(parameter bits = 16, parameter drvrs = 4);
                           .raw_data(16'h0100), .pndng(1'b0), .t_obs($time));
       env.mon_chkr_mbx.put(obs_underflow);
     end
+
+    // Dar tiempo a que el driver levante pndng, pero muy por debajo de
+    // los ~140 ciclos que tarda una transaccion real en completarse:
+    // garantiza interrumpirla a mitad de camino, no antes ni despues.
+    #100;
+    vif.reset = 1;
+    #10;
+    vif.reset = 0;
+
+     
 
     
 
