@@ -5,12 +5,12 @@ ifeq ($(LDVERSION), 0)
 endif
 
 ARCHIVE_OBJS=
-ARCHIVE_OBJS += _170563_archive_1.so
-_170563_archive_1.so : archive.26/_170563_archive_1.a
+ARCHIVE_OBJS += _173625_archive_1.so
+_173625_archive_1.so : archive.30/_173625_archive_1.a
 	@$(AR) -s $<
-	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../salida_sz64.daidir//_170563_archive_1.so --whole-archive $< --no-whole-archive
+	@$(PIC_LD) -shared  -Bsymbolic $(LD_NORELAX_FLAG)  -o .//../salida_sz64.daidir//_173625_archive_1.so --whole-archive $< --no-whole-archive
 	@rm -f $@
-	@ln -sf .//../salida_sz64.daidir//_170563_archive_1.so $@
+	@ln -sf .//../salida_sz64.daidir//_173625_archive_1.so $@
 
 
 
