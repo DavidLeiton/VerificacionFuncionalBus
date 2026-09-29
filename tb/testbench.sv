@@ -26,7 +26,7 @@ module testbench;
   
 
   // Instancia de la interfaz física
-  bus_if vif( .clk(clk) );
+  bus_if #(.pckg_sz(PCKG_SZ), .drvrs(DRVRS)) vif( .clk(clk) );
 
   // Instancia del DUT conectada a la interfaz
   bs_gnrtr_n_rbtr #(
