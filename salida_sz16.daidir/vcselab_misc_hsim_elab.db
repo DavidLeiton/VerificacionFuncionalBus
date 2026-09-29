@@ -1,5 +1,5 @@
 psSimBaseName                      	salida_sz16
-psLogFileName                      	NULL
+psLogFileName                      	compile_sz16.log
 pDaiDir                            	/mnt/vol_NFS_rh003/Est_Veri_II2026/LEITON_FLORES_DAVID_VeriII26/Proyecto1/VerificacionFuncionalBus/salida_sz16.daidir
 destPath                           	csrc/
 fSharedMaster                      	0
