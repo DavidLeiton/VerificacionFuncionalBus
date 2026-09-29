@@ -5,7 +5,7 @@ class environment #(parameter bits = 16, parameter drvrs = 4);
   agent      #(bits, drvrs) agnt;
   driver     #(bits, drvrs) drv;
   monitor                   mon;  // CORRECCIÓN: Se eliminaron los parámetros
-  scoreboard #(drvrs)       sb;   
+  scoreboard #(bits, drvrs)       sb;   
   checker    #(bits, drvrs)        chk;  
 
   // Creación de los buzones físicos

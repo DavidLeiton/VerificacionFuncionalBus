@@ -25,6 +25,7 @@
 //=============================================================================
 
 class scoreboard #(
+  parameter int       bits      = 16,
   parameter int       drvrs     = 4,
   parameter bit [7:0] broadcast = 8'hFF
 );
@@ -103,10 +104,10 @@ class scoreboard #(
     // Palabra que el driver puso en D_pop para este trans_bus: byte alto =
   // direccion (broadcast si es BROADCAST), byte bajo = payload. El DUT la
   // entrega igual por D_push, asi que sirve para reconocer el paquete.
-  protected function bit [15:0] palabra_esperada(trans_bus tb);
+  protected function bit [bits-1:0] palabra_esperada(trans_bus tb);
     bit [7:0] dir;
     dir = (tb.tipo == BROADCAST) ? broadcast : tb.destino[7:0];
-    return {dir, tb.payload[7:0]};
+    return {dir, tb.payload[bits-9:0]};
   endfunction
 
 
