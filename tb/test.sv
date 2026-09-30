@@ -31,13 +31,15 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     // --- F13: reset con una transaccion a mitad de camino ---
     // Va PRIMERO en la cola para que sea la unica cosa pendiente cuando
     // se dispare el reset, sin contaminacion de otros casos.
-    caso = new();
-    caso.origen  = 3;
-    caso.destino = 0;
-    caso.tipo    = VALIDA;
-    caso.payload = 16'hC0DE;
-    caso.retardo = 0;
-    tst_agnt_mbx.put(caso);
+    if (drvrs > 3) begin
+      caso = new();
+      caso.origen  = 3;
+      caso.destino = 0;
+      caso.tipo    = VALIDA;
+      caso.payload = 16'hC0DE;
+      caso.retardo = 0;
+      tst_agnt_mbx.put(caso);
+    end
 
     // Casos de esquina dirigidos ---
     caso = new();
@@ -56,13 +58,15 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     caso.retardo = 0;
     tst_agnt_mbx.put(caso);
 
-    caso = new();
-    caso.origen  = 2;
-    caso.destino = 0;
-    caso.tipo    = VALIDA;
-    caso.payload = 16'h0000;
-    caso.retardo = 0;
-    tst_agnt_mbx.put(caso);
+    if (drvrs > 2) begin
+      caso = new();
+      caso.origen  = 2;
+      caso.destino = 0;
+      caso.tipo    = VALIDA;
+      caso.payload = 16'h0000;
+      caso.retardo = 0;
+      tst_agnt_mbx.put(caso);
+    end
 
      // Rafaga: 8 paquetes seguidos del dispositivo 0 al 1, sin espera.
     //     Cada payload es distinto a proposito: el scoreboard reconoce
@@ -78,14 +82,16 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     end
 
     // (e) Contencion: tres dispositivos apuntando al mismo destino a la vez
-    for (int o = 1; o <= 3; o++) begin
-      caso = new();
-      caso.origen  = o;
-      caso.destino = 0;
-      caso.tipo    = VALIDA;
-      caso.payload = 16'hA0 + o;
-      caso.retardo = 0;
-      tst_agnt_mbx.put(caso);
+    if (drvrs > 3) begin
+      for (int o = 1; o <= 3; o++) begin
+        caso = new();
+        caso.origen  = o;
+        caso.destino = 0;
+        caso.tipo    = VALIDA;
+        caso.payload = 16'hA0 + o;
+        caso.retardo = 0;
+        tst_agnt_mbx.put(caso);
+      end
     end
     
 
@@ -107,10 +113,12 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     // Dar tiempo a que el driver levante pndng, pero muy por debajo de
     // los ~140 ciclos que tarda una transaccion real en completarse:
     // garantiza interrumpirla a mitad de camino, no antes ni despues.
-    #100;
-    vif.reset = 1;
-    #10;
-    vif.reset = 0;
+    if (drvrs > 3) begin
+      #100;
+      vif.reset = 1;
+      #10;
+      vif.reset = 0;
+    end
 
      
 

@@ -43,3 +43,17 @@ barrido_pckgsz: compilar
 	  ./$(OUT_BIN)_sz$$sz +ntb_random_seed=1; \
 	  cp reporte_paquetes.csv results/reporte_pckgsz$$sz.csv; \
 	done
+
+barrido_drvrs: compilar
+	mkdir -p results
+	set -e; \
+	for dv in 2 4 8; do \
+	  rm -f reporte_paquetes.csv; \
+	  vcs $(VCS_FLAGS) $(TB_FILE) \
+	    -pvalue+testbench.DRVRS=$$dv \
+	    +define+DRVRS=$$dv \
+	    -o $(OUT_BIN)_dv$$dv \
+	    -l compile_dv$$dv.log; \
+	  ./$(OUT_BIN)_dv$$dv +ntb_random_seed=1; \
+	  cp reporte_paquetes.csv results/reporte_drvrs$$dv.csv; \
+	done
