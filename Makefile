@@ -27,8 +27,8 @@ grafico:
 	gnuplot scripts/histograma_retardos.plt
 
 limpiar:
-	rm -rf csrc simv.daidir *.key $(OUT_BIN) *.vpd DVEfiles *.fsdb vc_hdrs.h
-
+	rm -rf csrc simv.daidir *.key salida* *.vpd DVEfiles *.fsdb vc_hdrs.h *.daidir *.vdb
+	
 barrido_pckgsz: compilar
 	mkdir -p results
 	set -e; \
