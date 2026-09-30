@@ -3,9 +3,15 @@
 #results/*.png
 
 # Archivos de simulacion y temporales
-sim/
-xsim.dir/
-*.vcd
-*.log
-*.jou
-*.pb
+csrc/
+salida*
+*.daidir/
+*.vdb/
+*.vpd
+*.fsdb
+DVEfiles/
+vc_hdrs.h
+ucli.key
+verdi_config_file
+*.key
+#results/*.log
