@@ -1,8 +1,8 @@
-// --- Archivo: trans_bus.sv ---
-// Se incluye el archivo de definiciones globales para reconocer tipo_pkt_e
+// trans_bus.sv --
+// archivo de definiciones globales para reconocer tipo_pkt_e
 `include "bus_defs.svh"
 
-// Se parametriza la clase para que se adapte a las pruebas de 2, 4 u 8 dispositivos, 
+// Se parametriza la clase para  dispositivos, 
 // y a los distintos anchos de payload (8, 16, 32) según el Test Plan.
 class trans_bus #(parameter bits = 16, parameter drvrs = 4);
   
@@ -20,7 +20,7 @@ class trans_bus #(parameter bits = 16, parameter drvrs = 4);
   constraint c_origen  { origen >= 0; origen < drvrs; }
 
 
-  // NUEVO: fuerza que los tres escenarios aparezcan con pesos parecidos,
+  // fuerza que los tres escenarios aparezcan con pesos parecidos,
   // sin importar que INVALIDA tenga muchísimas más combinaciones
   // posibles de 'destino' (251) que VALIDA (~3) o BROADCAST (1).
   constraint c_tipo_dist {
@@ -52,7 +52,7 @@ class trans_bus #(parameter bits = 16, parameter drvrs = 4);
 
   // Restringimos el retardo a un valor razonable (ej. entre 0 y 20 ciclos)
   // para no hacer la simulación infinitamente larga.
-  // ATENCIÓN: VER ESTA RESTRICCIÓN
+ 
   constraint c_retardo { retardo >= 0; retardo <= 20; }
 
   // Constructor

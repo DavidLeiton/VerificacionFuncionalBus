@@ -1,17 +1,17 @@
-// --- Archivo: environment.sv ---
+// environment.sv 
 class environment #(parameter bits = 16, parameter drvrs = 4);
   
   // Declaración de los componentes (Punteros)
   agent      #(bits, drvrs) agnt;
   driver     #(bits, drvrs) drv;
-  monitor                   mon;  // CORRECCIÓN: Se eliminaron los parámetros
+  monitor                   mon;  
   scoreboard #(bits, drvrs)       sb;   
   checker    #(bits, drvrs)        chk;  
 
   // Creación de los buzones físicos
   mailbox #(trans_bus #(bits, drvrs)) agnt_drv_mbx = new();
   mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx  = new();
-  mailbox #(mon_obs)   mon_chkr_mbx = new(); // CORRECCIÓN: Tipo actualizado a mon_obs
+  mailbox #(mon_obs)   mon_chkr_mbx = new(); 
   mailbox #(trans_sb #(bits, drvrs))  chkr_sb_mbx  = new(); 
 
   // El puntero a los pines físicos
@@ -23,7 +23,7 @@ class environment #(parameter bits = 16, parameter drvrs = 4);
     
     // Inicializamos cada componente 
     agnt = new(tst_agnt_mbx, agnt_drv_mbx, agnt_sb_mbx);
-    drv  = new(agnt_drv_mbx, this.vif);      // CORRECCIÓN: Orden de buzón e interfaz invertido
+    drv  = new(agnt_drv_mbx, this.vif);     
     mon  = new(this.vif, mon_chkr_mbx);
     chk  = new(mon_chkr_mbx, chkr_sb_mbx); 
     sb   = new(agnt_sb_mbx, chkr_sb_mbx);

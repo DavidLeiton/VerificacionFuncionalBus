@@ -30,11 +30,9 @@ interface bus_if #(
     input D_push;
   endclocking
 
-  // === NUEVO: clocking block del MONITOR — observador puro, todo input ===
+  // clocking block del MONITOR 
   // pndng y D_pop son "output" para cb (los maneja el driver), pero acá,
-  // desde la perspectiva de solo-lectura del monitor, son "input". No es
-  // una contradicción: son dos clocking blocks distintos mirando los
-  // mismos pines físicos, cada uno desde su propio rol.
+  // desde la perspectiva de solo-lectura del monitor
   clocking mon_cb @(posedge clk);
     default input #1ns;
     input pndng;

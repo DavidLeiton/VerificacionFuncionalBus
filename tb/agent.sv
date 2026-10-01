@@ -1,10 +1,10 @@
-// --- Archivo: agent.sv ---
+// --- agent.sv --
 class agent #(parameter bits = 16, parameter drvrs = 4);
 
   // 1. Declaración de los canales de comunicación (Buzones)
   mailbox #(trans_bus #(bits, drvrs)) tst_agnt_mbx;  // Entrada: Del Test hacia el Agente (comandos/control)
-  mailbox #(trans_bus #(bits, drvrs)) agnt_drv_mbx;  // Salida: Hacia el Driver (para inyectar en hardware)
-  mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx;   // Salida: Hacia el Scoreboard (copia dorada)
+  mailbox #(trans_bus #(bits, drvrs)) agnt_drv_mbx;  // Salida: Hacia el Driver (para el hardware)
+  mailbox #(trans_bus #(bits, drvrs)) agnt_sb_mbx;   // Salida: Hacia el Scoreboard 
 
   // Variable de control para saber cuántas transacciones generar.
   int num_transacciones = 10; 

@@ -1,4 +1,4 @@
-// --- Archivo: test.sv ---
+//  test.sv -
 class test #(parameter bits = 16, parameter drvrs = 4);
   
   // Puntero al ambiente
@@ -29,7 +29,7 @@ class test #(parameter bits = 16, parameter drvrs = 4);
     env.agnt.num_transacciones = 200; //numero de transacciones   
 
     // --- F13: reset con una transaccion a mitad de camino ---
-    // Va PRIMERO en la cola para que sea la unica cosa pendiente cuando
+    // Va primero en la cola para que sea la unica cosa pendiente cuando
     // se dispare el reset, sin contaminacion de otros casos.
     if (drvrs > 3) begin
       caso = new();
@@ -81,7 +81,7 @@ class test #(parameter bits = 16, parameter drvrs = 4);
       tst_agnt_mbx.put(caso);
     end
 
-    // (e) Contencion: tres dispositivos apuntando al mismo destino a la vez
+    //  Contencion: tres dispositivos apuntando al mismo destino a la vez
     if (drvrs > 3) begin
       for (int o = 1; o <= 3; o++) begin
         caso = new();
@@ -120,17 +120,13 @@ class test #(parameter bits = 16, parameter drvrs = 4);
       vif.reset = 0;
     end
 
-     
-
     
-
-    
-    // 1) Esperar a que el Agente termine de generar TODO (dirigidos + aleatorios)
+    // 1) Esperar a que el Agente termine de generar  dirigidos + aleatorios
     //    antes de siquiera pensar en preguntar si algo esta pendiente.
     @(env.agnt.fin_generacion);
   
-    // 2) Recien ahora, drenar lo que haya quedado en curso, con un tope
-    //    de seguridad por si algo se atasca de verdad (starvation real).
+    // 2) drenar lo que haya quedado en curso, con un tope
+    //    de seguridad por si algo se atasca de verdad .
     fork
       begin
         forever begin

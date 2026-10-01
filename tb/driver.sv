@@ -22,7 +22,6 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
   endfunction
 
   // Tarea independiente de este hijo para sacar datos e interactuar con los pines
-  // Tarea independiente de este hijo para sacar datos e interactuar con los pines
   task run();
     trans_bus #(bits, drvrs) tr_actual;
     bit [7:0] dir;
@@ -40,7 +39,7 @@ class fifo_emul #(parameter bits = 16, parameter drvrs = 4);
           repeat(tr_actual.retardo) @(vif.cb);
         
 
-        // ---> NUEVA LÍNEA: Registrar el tiempo exacto de inyección <---
+        // -Registrar el tiempo exacto de inyección 
         tr_actual.t_envio = $time;
         // Byte alto = direccion real (o BROADCAST_ADDR si es broadcast)
         dir = (tr_actual.tipo == BROADCAST) ? BROADCAST_ADDR : tr_actual.destino[7:0];
@@ -80,7 +79,7 @@ class driver #(parameter bits = 16, parameter drvrs = 4);
   function new(mailbox #(trans_bus #(bits, drvrs)) ad, virtual bus_if vif_in);
     this.agnt_drv_mbx = ad;
     
-    // Inicializamos el arreglo para que tenga exactamente la cantidad 
+    // arreglo para que tenga exactamente la cantidad 
     // de dispositivos definidos por el parámetro 'drvrs'
     hijos = new[drvrs];
     
@@ -105,7 +104,7 @@ class driver #(parameter bits = 16, parameter drvrs = 4);
 
     // Tarea principal del Padre: Escuchar al agente y enrutar
     forever begin
-      // Extrae la transacción del buzón (se queda esperando si está vacío)
+      // Extrae la transacción del buzón , espera si esta vacio
       agnt_drv_mbx.get(tr_recibida);
       
       // Enrutamiento

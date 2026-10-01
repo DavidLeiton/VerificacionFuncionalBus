@@ -1,7 +1,7 @@
-//-----------------------------------------------------------------
-// Proyecto     : Proyecto 1 - Verificacion de bus con arbitraje round-robin
-// Bloque       : checker (Monitor -> Checker -> Scoreboard)
-//------------------------------------------------------------------
+//--------------------------------------------------
+// Verificacion de bus con arbitraje round-robin
+//  checker (Monitor -> Checker -> Scoreboard)
+//-----------------------------------
 
 `include "bus_defs.svh"
 
@@ -10,7 +10,7 @@ class checker #(parameter bits = 16, parameter drvrs = 4);
   typedef trans_sb#(bits) trans_sb_t;
 
   // Canales de comunicacion: Cambiamos obs_cruda_t por mon_obs
-  mailbox #(mon_obs)    mon_chkr_mbx;   // entrada : monitor.sv -> checker
+  mailbox #(mon_obs)    mon_chkr_mbx;   // entrada : monitor.sv --> checker
   mailbox #(trans_sb_t) chkr_sb_mbx;    // salida  : checker    -> scoreboard.sv
 
   protected int ganador_actual   = -1;
@@ -32,7 +32,7 @@ class checker #(parameter bits = 16, parameter drvrs = 4);
 
   // Tarea de ejecución
   task run();
-    mon_obs       obs; // Usamos la clase definida por el Monitor de David
+    mon_obs       obs; // Usamos la clase definida por el Monitor
     resultado_e   res;
     trans_sb_t    veredicto;
 
@@ -46,8 +46,7 @@ class checker #(parameter bits = 16, parameter drvrs = 4);
         if (ganador_anterior != -1)
           cg_arbitraje.sample();
 
-          // Un envio normal (pndng=1) ya no se reporta aca: su
-        // confirmacion real ahora llega por EVT_LLEGADA. Este lado
+          // Un envio normal (pndng=1) ya no se reporta aca:
         // solo nos interesa para detectar la violacion de protocolo.
       
         if (!obs.pndng) begin

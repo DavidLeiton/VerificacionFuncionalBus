@@ -1,4 +1,4 @@
-// --- Archivo: testbench.sv ---
+// -testbench.sv ---
 `timescale 1ns/1ps
 
 `include "../src/Library.sv"

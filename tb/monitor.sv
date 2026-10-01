@@ -1,14 +1,10 @@
-//=============================================================================
-// monitor.sv - Bloque MONITOR (observador pasivo del bus)
+//===================================================
+// monitor.sv (observador pasivo del bus)
 //
 // Arquitectura: Padre (monitor) + `DRVRS Hijos (monitor_child), cada uno
 // mirando el Bus Controller de un dispositivo. Los Hijos reportan a una
-// mailbox interna; el Padre retransmite hacia checker.sv sin modificar nada.
-//
-// AJUSTAR antes de compilar: nombre de interfaz/señales (bus_if, pop,
-// D_pop, pndng, reset) y macros DRVRS/PCKG_SZ para que coincidan con el
-// resto del proyecto.
-//=============================================================================
+// mailbox interna; el Padre retransmite hacia checker.sv
+//======================================================
 
 `ifndef MONITOR_SV
 `define MONITOR_SV
@@ -20,22 +16,9 @@
   `define PCKG_SZ 16
 `endif
 
-// Interfaz esperada (ya debe existir en el proyecto, compartida con el
-// Manejador):
-//
-//   interface bus_if (input bit clk);
-//     logic                reset;
-//     logic [`PCKG_SZ-1:0] D_pop [`DRVRS];
-//     logic                pop   [`DRVRS];
-//     logic                pndng [`DRVRS];
-//     clocking mon_cb @(posedge clk);
-//       input pop, D_pop, pndng;
-//     endclocking
-//   endinterface
 
-//-----------------------------------------------------------------------------
-// Observacion cruda: destino, dato, pndng y tiempo en el instante del pop.
-// Camino B: se arma completa en el constructor y no se modifica despues.
+
+
 //-----------------------------------------------------------------------------
 class mon_obs;
   int                  bc_id;    // Hijo que capturo el evento (solo trazabilidad)
@@ -67,10 +50,10 @@ class mon_obs;
 endclass
 
 
-//-----------------------------------------------------------------------------
+//-----------------------------------------------
 // Hijo: observa un unico Bus Controller. No decide ni filtra nada, solo
 // reporta el evento tal cual lo ve.
-//-----------------------------------------------------------------------------
+//----------------------------------------------------------------
 class monitor_child;
   virtual bus_if     vif;
   int                bc_id;
@@ -105,7 +88,7 @@ class monitor_child;
                   .t_obs    ($time));
         mon2parent.put(obs);
       end
-      // Lado LLEGADA: este dispositivo recibe (NUEVO)
+      // Lado LLEGADA: este dispositivo recibe 
       if (vif.mon_cb.push[0][bc_id] && !push_d) begin
         mon_obs obs;
         obs = new(.bc_id    (bc_id),
@@ -123,9 +106,9 @@ class monitor_child;
 endclass
 
 
-//-----------------------------------------------------------------------------
+//-------------------------------------------
 // Padre: lanza los Hijos y retransmite sus observaciones hacia checker.sv.
-//-----------------------------------------------------------------------------
+//-------------------------------------------------------------
 class monitor;
   virtual bus_if     vif;
   mailbox #(mon_obs) mon2chk;      // hacia checker.sv
@@ -151,7 +134,7 @@ class monitor;
     relay();
   endtask
 
-  // Unico punto de salida: relay sin modificar + log opcional.
+  // Unico punto de salida: relay sin modificar + log
   task automatic relay();
     mon_obs obs;
     forever begin
