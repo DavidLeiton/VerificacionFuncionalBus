@@ -14,4 +14,8 @@ vc_hdrs.h
 ucli.key
 verdi_config_file
 *.key
+*.swp
+*.swo
+simv
+simv.daidir/
 #results/*.log
