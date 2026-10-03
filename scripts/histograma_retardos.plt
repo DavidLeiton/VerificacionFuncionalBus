@@ -11,12 +11,17 @@
 # Uso parametrizado (pasando variables por -e, sin tocar este archivo):
 #   gnuplot -e "archivo='results/reporte_pckgsz32.csv'" histograma_retardos.plt
 #   gnuplot -e "archivo='results/reporte_drvrs8.csv'; binwidth=150000" histograma_retardos.plt
-#   gnuplot -e "archivo='results/reporte_seed3.csv'; salida='hist_seed3.png'; titulo='Semilla 3'" histograma_retardos.plt
+#   gnuplot -e "archivo='results/reporte_agregado.csv'; xmax=2000000" histograma_retardos.plt
 #
 # Variables que se pueden pasar con -e (todas opcionales):
 #   archivo   -> CSV de entrada (por defecto: reporte_paquetes.csv)
 #   binwidth  -> ancho de bin en unidades de tiempo (por defecto: se calcula
-#                solo, apuntando a ~30 barras segun el rango real de datos)
+#                solo, apuntando a ~30 barras segun el rango visible)
+#   xmax      -> recorta el eje X a [0, xmax]. Usalo cuando el CSV tenga
+#                valores atipicos ya documentados aparte (p. ej. el caso
+#                de reset a mitad de transaccion), para que no aplasten
+#                la distribucion normal en una sola barra. El binwidth
+#                automatico tambien se ajusta a este rango visible.
 #   salida    -> nombre del PNG de salida (por defecto: histograma_retardos.png)
 #   titulo    -> titulo del grafico
 #
@@ -35,15 +40,21 @@ set output salida
 # (columna 5) del archivo que se haya indicado en 'archivo'.
 datos = sprintf("< awk -F',' 'NR>1 && $6==\"COMPLETADO\" {print $5}' %s", archivo)
 
-# Si no se paso 'binwidth' explicitamente por -e, se calcula uno automatico
-# apuntando a ~30 barras, segun el rango real de "retraso" en ESTE archivo.
-# Asi, el mismo script sirve para pckg_sz=16 (retardos de ~1.5M) y para
-# pckg_sz=64 o drvrs=8 (retardos varias veces mas grandes) sin tener que
-# editar nada a mano.
+stats datos using 1 nooutput
+
+# Si se paso 'xmax', recortamos el eje visible a [0, xmax] y el binwidth
+# automatico (si tampoco se paso explicito) se calcula sobre ESE rango
+# visible, no sobre el maximo real del archivo -- asi un puñado de
+# valores atipicos ya documentados aparte no arruina la escala del resto.
+if (exists("xmax")) {
+  set xrange [0:xmax]
+  rango_visible = xmax - STATS_min
+} else {
+  rango_visible = STATS_max - STATS_min
+}
+
 if (!exists("binwidth")) {
-  stats datos using 1 nooutput
-  rango = STATS_max - STATS_min
-  binwidth = (rango > 0) ? (rango / 30.0) : 1000
+  binwidth = (rango_visible > 0) ? (rango_visible / 30.0) : 1000
 }
 
 bin(x,width) = width*floor(x/width)
@@ -58,4 +69,7 @@ set key off
 
 plot datos using (bin($1,binwidth)):(1.0) smooth freq with boxes lc rgb "#4472C4"
 
-print sprintf("Histograma generado en: %s  (archivo=%s, binwidth=%.0f)", salida, archivo, binwidth)
+print sprintf("Histograma generado en: %s  (archivo=%s, binwidth=%.0f, rango=[%s,%s])", \
+              salida, archivo, binwidth, \
+              (exists("xmax") ? "0" : sprintf("%.0f",STATS_min)), \
+              (exists("xmax") ? sprintf("%.0f",xmax) : sprintf("%.0f",STATS_max)))
