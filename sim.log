@@ -1,0 +1,803 @@
+Chronologic VCS simulator copyright 1991-2020
+Contains Synopsys proprietary information.
+Compiler version R-2020.12-SP2_Full64; Runtime version R-2020.12-SP2_Full64;  Sep 30 22:08 2026
+=================================================
+[20000] [TEST] Iniciando Prueba de Bus (bits=16, drvrs=4)
+=================================================
+[20000] [ENVIRONMENT] Arrancando todos los transactores...
+[20000] [AGENTE] Iniciando generacion de 200 estimulos...
+[20000] [AGENTE] Caso de esquina dirigido: origen=3 destino=0 tipo=VALIDA retardo=0
+[20000] [DRIVER] Manejador iniciado. Emuladores creados: 4
+[20000] Creado dest=1 dato=0x100 t_env=0 t_rx=20000 lat=0 res=UNDERFLOW
+[25000] [DRIVER] id=3 origen=3 destino=0 tipo=VALIDA payload=0xc0de -> D_pop=0xde
+[30000] [AGENTE] Caso de esquina dirigido: origen=0 destino=255 tipo=BROADCAST retardo=0
+[35000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0xffff -> D_pop=0xffff
+[40000] [AGENTE] Caso de esquina dirigido: origen=1 destino=4 tipo=INVALIDA retardo=0
+[45000] [DRIVER] id=1 origen=1 destino=4 tipo=INVALIDA payload=0xdead -> D_pop=0x4ad
+[50000] [AGENTE] Caso de esquina dirigido: origen=2 destino=0 tipo=VALIDA retardo=0
+[55000] [DRIVER] id=2 origen=2 destino=0 tipo=VALIDA payload=0x0 -> D_pop=0x0
+[60000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[70000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[80000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[90000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[95000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x1 -> D_pop=0x101
+[100000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[110000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[120000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[130000] [AGENTE] Caso de esquina dirigido: origen=0 destino=1 tipo=VALIDA retardo=0
+[140000] [AGENTE] Caso de esquina dirigido: origen=1 destino=0 tipo=VALIDA retardo=0
+[145000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0xa1 -> D_pop=0xa1
+[150000] [AGENTE] Caso de esquina dirigido: origen=2 destino=0 tipo=VALIDA retardo=0
+[155000] [DRIVER] id=2 origen=2 destino=0 tipo=VALIDA payload=0xa2 -> D_pop=0xa2
+[160000] [AGENTE] Caso de esquina dirigido: origen=3 destino=0 tipo=VALIDA retardo=0
+[165000] [DRIVER] id=3 origen=3 destino=0 tipo=VALIDA payload=0xa3 -> D_pop=0xa3
+[185000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x2 -> D_pop=0x102
+[315000] [DRIVER] id=1 origen=1 destino=2 tipo=VALIDA payload=0x20ba -> D_pop=0x2ba
+[385000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x505a -> D_pop=0xff5a
+[385000] Creado dest=0 dato=0xa3 t_env=0 t_rx=385000 lat=0 res=COMPLETADO
+[385000] cerrado dest=0 dato=0xa3 t_env=165000 t_rx=385000 lat=220000 res=COMPLETADO
+[395000] [DRIVER] id=3 origen=3 destino=4 tipo=INVALIDA payload=0x338e -> D_pop=0x48e
+[585000] [DRIVER] id=3 origen=3 destino=188 tipo=INVALIDA payload=0x566e -> D_pop=0xbc6e
+[585000] Creado dest=1 dato=0x101 t_env=0 t_rx=585000 lat=0 res=COMPLETADO
+[585000] cerrado dest=1 dato=0x101 t_env=95000 t_rx=585000 lat=490000 res=COMPLETADO
+[635000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x3 -> D_pop=0x103
+[785000] Creado dest=0 dato=0xa1 t_env=0 t_rx=785000 lat=0 res=COMPLETADO
+[785000] cerrado dest=0 dato=0xa1 t_env=145000 t_rx=785000 lat=640000 res=COMPLETADO
+[905000] [DRIVER] id=1 origen=1 destino=238 tipo=INVALIDA payload=0xda84 -> D_pop=0xee84
+[985000] Creado dest=0 dato=0xa2 t_env=0 t_rx=985000 lat=0 res=COMPLETADO
+[985000] cerrado dest=0 dato=0xa2 t_env=155000 t_rx=985000 lat=830000 res=COMPLETADO
+[1165000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x820a -> D_pop=0xff0a
+[1255000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x4f01 -> D_pop=0xff01
+[1385000] Creado dest=1 dato=0x102 t_env=0 t_rx=1385000 lat=0 res=COMPLETADO
+[1385000] cerrado dest=1 dato=0x102 t_env=185000 t_rx=1385000 lat=1200000 res=COMPLETADO
+[1435000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x4 -> D_pop=0x104
+[1585000] Creado dest=2 dato=0x2ba t_env=0 t_rx=1585000 lat=0 res=COMPLETADO
+[1585000] cerrado dest=2 dato=0x2ba t_env=315000 t_rx=1585000 lat=1270000 res=COMPLETADO
+[1785000] Creado dest=0 dato=0xff5a t_env=0 t_rx=1785000 lat=0 res=COMPLETADO
+[1785000] Creado dest=1 dato=0xff5a t_env=0 t_rx=1785000 lat=0 res=COMPLETADO
+[1785000] Creado dest=3 dato=0xff5a t_env=0 t_rx=1785000 lat=0 res=COMPLETADO
+[1785000] cerrado dest=0 dato=0xff5a t_env=385000 t_rx=1785000 lat=1400000 res=COMPLETADO
+[1785000] cerrado dest=1 dato=0xff5a t_env=385000 t_rx=1785000 lat=1400000 res=COMPLETADO
+[1785000] cerrado dest=3 dato=0xff5a t_env=385000 t_rx=1785000 lat=1400000 res=COMPLETADO
+[1835000] [DRIVER] id=1 origen=1 destino=157 tipo=INVALIDA payload=0x2a54 -> D_pop=0x9d54
+[1915000] [DRIVER] id=2 origen=2 destino=3 tipo=VALIDA payload=0x3000 -> D_pop=0x300
+[2065000] [DRIVER] id=3 origen=3 destino=1 tipo=VALIDA payload=0x2c9d -> D_pop=0x19d
+[2170000] [AGENTE] Finalizada la generacion.
+[2185000] Creado dest=1 dato=0x103 t_env=0 t_rx=2185000 lat=0 res=COMPLETADO
+[2185000] cerrado dest=1 dato=0x103 t_env=635000 t_rx=2185000 lat=1550000 res=COMPLETADO
+[2235000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x5 -> D_pop=0x105
+[2575000] [DRIVER] id=1 origen=1 destino=201 tipo=INVALIDA payload=0x4c4c -> D_pop=0xc94c
+[2585000] Creado dest=0 dato=0xff0a t_env=0 t_rx=2585000 lat=0 res=COMPLETADO
+[2585000] Creado dest=1 dato=0xff0a t_env=0 t_rx=2585000 lat=0 res=COMPLETADO
+[2585000] Creado dest=3 dato=0xff0a t_env=0 t_rx=2585000 lat=0 res=COMPLETADO
+[2585000] cerrado dest=0 dato=0xff0a t_env=1165000 t_rx=2585000 lat=1420000 res=COMPLETADO
+[2585000] cerrado dest=1 dato=0xff0a t_env=1165000 t_rx=2585000 lat=1420000 res=COMPLETADO
+[2585000] cerrado dest=3 dato=0xff0a t_env=1165000 t_rx=2585000 lat=1420000 res=COMPLETADO
+[2765000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x7ba6 -> D_pop=0xffa6
+[2785000] Creado dest=0 dato=0xff01 t_env=0 t_rx=2785000 lat=0 res=COMPLETADO
+[2785000] Creado dest=1 dato=0xff01 t_env=0 t_rx=2785000 lat=0 res=COMPLETADO
+[2785000] Creado dest=2 dato=0xff01 t_env=0 t_rx=2785000 lat=0 res=COMPLETADO
+[2785000] cerrado dest=0 dato=0xff01 t_env=1255000 t_rx=2785000 lat=1530000 res=COMPLETADO
+[2785000] cerrado dest=1 dato=0xff01 t_env=1255000 t_rx=2785000 lat=1530000 res=COMPLETADO
+[2785000] cerrado dest=2 dato=0xff01 t_env=1255000 t_rx=2785000 lat=1530000 res=COMPLETADO
+[2955000] [DRIVER] id=3 origen=3 destino=193 tipo=INVALIDA payload=0x35c5 -> D_pop=0xc1c5
+[2985000] Creado dest=1 dato=0x104 t_env=0 t_rx=2985000 lat=0 res=COMPLETADO
+[2985000] cerrado dest=1 dato=0x104 t_env=1435000 t_rx=2985000 lat=1550000 res=COMPLETADO
+[3035000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x6 -> D_pop=0x106
+[3265000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0xf074 -> D_pop=0x374
+[3385000] Creado dest=3 dato=0x300 t_env=0 t_rx=3385000 lat=0 res=COMPLETADO
+[3385000] cerrado dest=3 dato=0x300 t_env=1915000 t_rx=3385000 lat=1470000 res=COMPLETADO
+[3465000] [DRIVER] id=2 origen=2 destino=74 tipo=INVALIDA payload=0xe924 -> D_pop=0x4a24
+[3585000] Creado dest=1 dato=0x19d t_env=0 t_rx=3585000 lat=0 res=COMPLETADO
+[3585000] cerrado dest=1 dato=0x19d t_env=2065000 t_rx=3585000 lat=1520000 res=COMPLETADO
+[3695000] [DRIVER] id=3 origen=3 destino=42 tipo=INVALIDA payload=0x10de -> D_pop=0x2ade
+[3785000] Creado dest=1 dato=0x105 t_env=0 t_rx=3785000 lat=0 res=COMPLETADO
+[3785000] cerrado dest=1 dato=0x105 t_env=2235000 t_rx=3785000 lat=1550000 res=COMPLETADO
+[3835000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x7 -> D_pop=0x107
+[4055000] [DRIVER] id=1 origen=1 destino=107 tipo=INVALIDA payload=0xca35 -> D_pop=0x6b35
+[4185000] Creado dest=0 dato=0xffa6 t_env=0 t_rx=4185000 lat=0 res=COMPLETADO
+[4185000] Creado dest=1 dato=0xffa6 t_env=0 t_rx=4185000 lat=0 res=COMPLETADO
+[4185000] Creado dest=3 dato=0xffa6 t_env=0 t_rx=4185000 lat=0 res=COMPLETADO
+[4185000] cerrado dest=0 dato=0xffa6 t_env=2765000 t_rx=4185000 lat=1420000 res=COMPLETADO
+[4185000] cerrado dest=1 dato=0xffa6 t_env=2765000 t_rx=4185000 lat=1420000 res=COMPLETADO
+[4185000] cerrado dest=3 dato=0xffa6 t_env=2765000 t_rx=4185000 lat=1420000 res=COMPLETADO
+[4375000] [DRIVER] id=2 origen=2 destino=132 tipo=INVALIDA payload=0xe24c -> D_pop=0x844c
+[4465000] [DRIVER] id=3 origen=3 destino=1 tipo=VALIDA payload=0x1213 -> D_pop=0x113
+[4585000] Creado dest=1 dato=0x106 t_env=0 t_rx=4585000 lat=0 res=COMPLETADO
+[4585000] cerrado dest=1 dato=0x106 t_env=3035000 t_rx=4585000 lat=1550000 res=COMPLETADO
+[4635000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x8 -> D_pop=0x108
+[4785000] Creado dest=3 dato=0x374 t_env=0 t_rx=4785000 lat=0 res=COMPLETADO
+[4785000] cerrado dest=3 dato=0x374 t_env=3265000 t_rx=4785000 lat=1520000 res=COMPLETADO
+[4935000] [DRIVER] id=1 origen=1 destino=219 tipo=INVALIDA payload=0x11a7 -> D_pop=0xdba7
+[5105000] [DRIVER] id=2 origen=2 destino=225 tipo=INVALIDA payload=0xc82b -> D_pop=0xe12b
+[5265000] [DRIVER] id=3 origen=3 destino=142 tipo=INVALIDA payload=0x8a5b -> D_pop=0x8e5b
+[5385000] Creado dest=1 dato=0x107 t_env=0 t_rx=5385000 lat=0 res=COMPLETADO
+[5385000] cerrado dest=1 dato=0x107 t_env=3835000 t_rx=5385000 lat=1550000 res=COMPLETADO
+[5615000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x325c -> D_pop=0x15c
+[5835000] [DRIVER] id=1 origen=1 destino=32 tipo=INVALIDA payload=0x5ecf -> D_pop=0x20cf
+[5985000] Creado dest=1 dato=0x113 t_env=0 t_rx=5985000 lat=0 res=COMPLETADO
+[5985000] cerrado dest=1 dato=0x113 t_env=4465000 t_rx=5985000 lat=1520000 res=COMPLETADO
+[6005000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x24cd -> D_pop=0xffcd
+[6045000] [DRIVER] id=3 origen=3 destino=0 tipo=VALIDA payload=0x50be -> D_pop=0xbe
+[6185000] Creado dest=1 dato=0x108 t_env=0 t_rx=6185000 lat=0 res=COMPLETADO
+[6185000] cerrado dest=1 dato=0x108 t_env=4635000 t_rx=6185000 lat=1550000 res=COMPLETADO
+[6335000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x756c -> D_pop=0xff6c
+[6485000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0xc01e -> D_pop=0x1e
+[6755000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x3e7a -> D_pop=0xff7a
+[6965000] [DRIVER] id=3 origen=3 destino=0 tipo=VALIDA payload=0x7f15 -> D_pop=0x15
+[6985000] Creado dest=1 dato=0x15c t_env=0 t_rx=6985000 lat=0 res=COMPLETADO
+[6985000] cerrado dest=1 dato=0x15c t_env=5615000 t_rx=6985000 lat=1370000 res=COMPLETADO
+[7105000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x77f8 -> D_pop=0xfff8
+[7245000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x4398 -> D_pop=0xff98
+[7385000] Creado dest=0 dato=0xffcd t_env=0 t_rx=7385000 lat=0 res=COMPLETADO
+[7385000] Creado dest=1 dato=0xffcd t_env=0 t_rx=7385000 lat=0 res=COMPLETADO
+[7385000] Creado dest=3 dato=0xffcd t_env=0 t_rx=7385000 lat=0 res=COMPLETADO
+[7385000] cerrado dest=0 dato=0xffcd t_env=6005000 t_rx=7385000 lat=1380000 res=COMPLETADO
+[7385000] cerrado dest=1 dato=0xffcd t_env=6005000 t_rx=7385000 lat=1380000 res=COMPLETADO
+[7385000] cerrado dest=3 dato=0xffcd t_env=6005000 t_rx=7385000 lat=1380000 res=COMPLETADO
+[7465000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x4853 -> D_pop=0xff53
+[7585000] Creado dest=0 dato=0xbe t_env=0 t_rx=7585000 lat=0 res=COMPLETADO
+[7585000] cerrado dest=0 dato=0xbe t_env=6045000 t_rx=7585000 lat=1540000 res=COMPLETADO
+[7785000] Creado dest=1 dato=0xff6c t_env=0 t_rx=7785000 lat=0 res=COMPLETADO
+[7785000] Creado dest=2 dato=0xff6c t_env=0 t_rx=7785000 lat=0 res=COMPLETADO
+[7785000] Creado dest=3 dato=0xff6c t_env=0 t_rx=7785000 lat=0 res=COMPLETADO
+[7785000] cerrado dest=1 dato=0xff6c t_env=6335000 t_rx=7785000 lat=1450000 res=COMPLETADO
+[7785000] cerrado dest=2 dato=0xff6c t_env=6335000 t_rx=7785000 lat=1450000 res=COMPLETADO
+[7785000] cerrado dest=3 dato=0xff6c t_env=6335000 t_rx=7785000 lat=1450000 res=COMPLETADO
+[7835000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xaf49 -> D_pop=0xff49
+[7985000] Creado dest=0 dato=0x1e t_env=0 t_rx=7985000 lat=0 res=COMPLETADO
+[7985000] cerrado dest=0 dato=0x1e t_env=6485000 t_rx=7985000 lat=1500000 res=COMPLETADO
+[7995000] [DRIVER] id=0 origen=0 destino=3 tipo=VALIDA payload=0x350d -> D_pop=0x30d
+[8045000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x3750 -> D_pop=0xff50
+[8185000] Creado dest=0 dato=0xff7a t_env=0 t_rx=8185000 lat=0 res=COMPLETADO
+[8185000] Creado dest=1 dato=0xff7a t_env=0 t_rx=8185000 lat=0 res=COMPLETADO
+[8185000] Creado dest=3 dato=0xff7a t_env=0 t_rx=8185000 lat=0 res=COMPLETADO
+[8185000] cerrado dest=0 dato=0xff7a t_env=6755000 t_rx=8185000 lat=1430000 res=COMPLETADO
+[8185000] cerrado dest=1 dato=0xff7a t_env=6755000 t_rx=8185000 lat=1430000 res=COMPLETADO
+[8185000] cerrado dest=3 dato=0xff7a t_env=6755000 t_rx=8185000 lat=1430000 res=COMPLETADO
+[8385000] Creado dest=0 dato=0x15 t_env=0 t_rx=8385000 lat=0 res=COMPLETADO
+[8385000] cerrado dest=0 dato=0x15 t_env=6965000 t_rx=8385000 lat=1420000 res=COMPLETADO
+[8405000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x43ce -> D_pop=0xffce
+[8575000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x9a40 -> D_pop=0xff40
+[8585000] Creado dest=1 dato=0xfff8 t_env=0 t_rx=8585000 lat=0 res=COMPLETADO
+[8585000] Creado dest=2 dato=0xfff8 t_env=0 t_rx=8585000 lat=0 res=COMPLETADO
+[8585000] Creado dest=3 dato=0xfff8 t_env=0 t_rx=8585000 lat=0 res=COMPLETADO
+[8585000] cerrado dest=1 dato=0xfff8 t_env=7105000 t_rx=8585000 lat=1480000 res=COMPLETADO
+[8585000] cerrado dest=2 dato=0xfff8 t_env=7105000 t_rx=8585000 lat=1480000 res=COMPLETADO
+[8585000] cerrado dest=3 dato=0xfff8 t_env=7105000 t_rx=8585000 lat=1480000 res=COMPLETADO
+[8685000] [DRIVER] id=0 origen=0 destino=78 tipo=INVALIDA payload=0x5700 -> D_pop=0x4e00
+[8785000] Creado dest=0 dato=0xff98 t_env=0 t_rx=8785000 lat=0 res=COMPLETADO
+[8785000] Creado dest=2 dato=0xff98 t_env=0 t_rx=8785000 lat=0 res=COMPLETADO
+[8785000] Creado dest=3 dato=0xff98 t_env=0 t_rx=8785000 lat=0 res=COMPLETADO
+[8785000] cerrado dest=0 dato=0xff98 t_env=7245000 t_rx=8785000 lat=1540000 res=COMPLETADO
+[8785000] cerrado dest=2 dato=0xff98 t_env=7245000 t_rx=8785000 lat=1540000 res=COMPLETADO
+[8785000] cerrado dest=3 dato=0xff98 t_env=7245000 t_rx=8785000 lat=1540000 res=COMPLETADO
+[8835000] [DRIVER] id=1 origen=1 destino=2 tipo=VALIDA payload=0xd061 -> D_pop=0x261
+[8985000] Creado dest=0 dato=0xff53 t_env=0 t_rx=8985000 lat=0 res=COMPLETADO
+[8985000] Creado dest=1 dato=0xff53 t_env=0 t_rx=8985000 lat=0 res=COMPLETADO
+[8985000] Creado dest=3 dato=0xff53 t_env=0 t_rx=8985000 lat=0 res=COMPLETADO
+[8985000] cerrado dest=0 dato=0xff53 t_env=7465000 t_rx=8985000 lat=1520000 res=COMPLETADO
+[8985000] cerrado dest=1 dato=0xff53 t_env=7465000 t_rx=8985000 lat=1520000 res=COMPLETADO
+[8985000] cerrado dest=3 dato=0xff53 t_env=7465000 t_rx=8985000 lat=1520000 res=COMPLETADO
+[9155000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x5883 -> D_pop=0xff83
+[9185000] Creado dest=0 dato=0xff49 t_env=0 t_rx=9185000 lat=0 res=COMPLETADO
+[9185000] Creado dest=1 dato=0xff49 t_env=0 t_rx=9185000 lat=0 res=COMPLETADO
+[9185000] Creado dest=2 dato=0xff49 t_env=0 t_rx=9185000 lat=0 res=COMPLETADO
+[9185000] cerrado dest=0 dato=0xff49 t_env=7835000 t_rx=9185000 lat=1350000 res=COMPLETADO
+[9185000] cerrado dest=1 dato=0xff49 t_env=7835000 t_rx=9185000 lat=1350000 res=COMPLETADO
+[9185000] cerrado dest=2 dato=0xff49 t_env=7835000 t_rx=9185000 lat=1350000 res=COMPLETADO
+[9385000] Creado dest=3 dato=0x30d t_env=0 t_rx=9385000 lat=0 res=COMPLETADO
+[9385000] cerrado dest=3 dato=0x30d t_env=7995000 t_rx=9385000 lat=1390000 res=COMPLETADO
+[9435000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xdb68 -> D_pop=0xff68
+[9505000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x90d7 -> D_pop=0xffd7
+[9585000] Creado dest=0 dato=0xff50 t_env=0 t_rx=9585000 lat=0 res=COMPLETADO
+[9585000] Creado dest=2 dato=0xff50 t_env=0 t_rx=9585000 lat=0 res=COMPLETADO
+[9585000] Creado dest=3 dato=0xff50 t_env=0 t_rx=9585000 lat=0 res=COMPLETADO
+[9585000] cerrado dest=0 dato=0xff50 t_env=8045000 t_rx=9585000 lat=1540000 res=COMPLETADO
+[9585000] cerrado dest=2 dato=0xff50 t_env=8045000 t_rx=9585000 lat=1540000 res=COMPLETADO
+[9585000] cerrado dest=3 dato=0xff50 t_env=8045000 t_rx=9585000 lat=1540000 res=COMPLETADO
+[9675000] [DRIVER] id=1 origen=1 destino=229 tipo=INVALIDA payload=0x6183 -> D_pop=0xe583
+[9785000] Creado dest=0 dato=0xffce t_env=0 t_rx=9785000 lat=0 res=COMPLETADO
+[9785000] Creado dest=1 dato=0xffce t_env=0 t_rx=9785000 lat=0 res=COMPLETADO
+[9785000] Creado dest=3 dato=0xffce t_env=0 t_rx=9785000 lat=0 res=COMPLETADO
+[9785000] cerrado dest=0 dato=0xffce t_env=8405000 t_rx=9785000 lat=1380000 res=COMPLETADO
+[9785000] cerrado dest=1 dato=0xffce t_env=8405000 t_rx=9785000 lat=1380000 res=COMPLETADO
+[9785000] cerrado dest=3 dato=0xffce t_env=8405000 t_rx=9785000 lat=1380000 res=COMPLETADO
+[9985000] Creado dest=0 dato=0xff40 t_env=0 t_rx=9985000 lat=0 res=COMPLETADO
+[9985000] Creado dest=1 dato=0xff40 t_env=0 t_rx=9985000 lat=0 res=COMPLETADO
+[9985000] Creado dest=2 dato=0xff40 t_env=0 t_rx=9985000 lat=0 res=COMPLETADO
+[9985000] cerrado dest=0 dato=0xff40 t_env=8575000 t_rx=9985000 lat=1410000 res=COMPLETADO
+[9985000] cerrado dest=1 dato=0xff40 t_env=8575000 t_rx=9985000 lat=1410000 res=COMPLETADO
+[9985000] cerrado dest=2 dato=0xff40 t_env=8575000 t_rx=9985000 lat=1410000 res=COMPLETADO
+[10005000] [DRIVER] id=2 origen=2 destino=111 tipo=INVALIDA payload=0x96d6 -> D_pop=0x6fd6
+[10125000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x5d0 -> D_pop=0xffd0
+[10345000] [DRIVER] id=0 origen=0 destino=191 tipo=INVALIDA payload=0x4576 -> D_pop=0xbf76
+[10385000] Creado dest=2 dato=0x261 t_env=0 t_rx=10385000 lat=0 res=COMPLETADO
+[10385000] cerrado dest=2 dato=0x261 t_env=8835000 t_rx=10385000 lat=1550000 res=COMPLETADO
+[10585000] Creado dest=0 dato=0xff83 t_env=0 t_rx=10585000 lat=0 res=COMPLETADO
+[10585000] Creado dest=1 dato=0xff83 t_env=0 t_rx=10585000 lat=0 res=COMPLETADO
+[10585000] Creado dest=3 dato=0xff83 t_env=0 t_rx=10585000 lat=0 res=COMPLETADO
+[10585000] cerrado dest=0 dato=0xff83 t_env=9155000 t_rx=10585000 lat=1430000 res=COMPLETADO
+[10585000] cerrado dest=1 dato=0xff83 t_env=9155000 t_rx=10585000 lat=1430000 res=COMPLETADO
+[10585000] cerrado dest=3 dato=0xff83 t_env=9155000 t_rx=10585000 lat=1430000 res=COMPLETADO
+[10615000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x1eb -> D_pop=0xffeb
+[10755000] [DRIVER] id=2 origen=2 destino=1 tipo=VALIDA payload=0x3197 -> D_pop=0x197
+[10785000] Creado dest=0 dato=0xff68 t_env=0 t_rx=10785000 lat=0 res=COMPLETADO
+[10785000] Creado dest=1 dato=0xff68 t_env=0 t_rx=10785000 lat=0 res=COMPLETADO
+[10785000] Creado dest=2 dato=0xff68 t_env=0 t_rx=10785000 lat=0 res=COMPLETADO
+[10785000] cerrado dest=0 dato=0xff68 t_env=9435000 t_rx=10785000 lat=1350000 res=COMPLETADO
+[10785000] cerrado dest=1 dato=0xff68 t_env=9435000 t_rx=10785000 lat=1350000 res=COMPLETADO
+[10785000] cerrado dest=2 dato=0xff68 t_env=9435000 t_rx=10785000 lat=1350000 res=COMPLETADO
+[10985000] Creado dest=1 dato=0xffd7 t_env=0 t_rx=10985000 lat=0 res=COMPLETADO
+[10985000] Creado dest=2 dato=0xffd7 t_env=0 t_rx=10985000 lat=0 res=COMPLETADO
+[10985000] Creado dest=3 dato=0xffd7 t_env=0 t_rx=10985000 lat=0 res=COMPLETADO
+[10985000] cerrado dest=1 dato=0xffd7 t_env=9505000 t_rx=10985000 lat=1480000 res=COMPLETADO
+[10985000] cerrado dest=2 dato=0xffd7 t_env=9505000 t_rx=10985000 lat=1480000 res=COMPLETADO
+[10985000] cerrado dest=3 dato=0xffd7 t_env=9505000 t_rx=10985000 lat=1480000 res=COMPLETADO
+[10995000] [DRIVER] id=3 origen=3 destino=2 tipo=VALIDA payload=0x86be -> D_pop=0x2be
+[11035000] [DRIVER] id=0 origen=0 destino=173 tipo=INVALIDA payload=0xe6b -> D_pop=0xad6b
+[11255000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xdd82 -> D_pop=0xff82
+[11585000] Creado dest=0 dato=0xffd0 t_env=0 t_rx=11585000 lat=0 res=COMPLETADO
+[11585000] Creado dest=1 dato=0xffd0 t_env=0 t_rx=11585000 lat=0 res=COMPLETADO
+[11585000] Creado dest=2 dato=0xffd0 t_env=0 t_rx=11585000 lat=0 res=COMPLETADO
+[11585000] cerrado dest=0 dato=0xffd0 t_env=10125000 t_rx=11585000 lat=1460000 res=COMPLETADO
+[11585000] cerrado dest=1 dato=0xffd0 t_env=10125000 t_rx=11585000 lat=1460000 res=COMPLETADO
+[11585000] cerrado dest=2 dato=0xffd0 t_env=10125000 t_rx=11585000 lat=1460000 res=COMPLETADO
+[11605000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0xea7d -> D_pop=0xff7d
+[11755000] [DRIVER] id=3 origen=3 destino=2 tipo=VALIDA payload=0x7cc8 -> D_pop=0x2c8
+[11865000] [DRIVER] id=0 origen=0 destino=60 tipo=INVALIDA payload=0xf30 -> D_pop=0x3c30
+[11985000] Creado dest=0 dato=0xffeb t_env=0 t_rx=11985000 lat=0 res=COMPLETADO
+[11985000] Creado dest=2 dato=0xffeb t_env=0 t_rx=11985000 lat=0 res=COMPLETADO
+[11985000] Creado dest=3 dato=0xffeb t_env=0 t_rx=11985000 lat=0 res=COMPLETADO
+[11985000] cerrado dest=0 dato=0xffeb t_env=10615000 t_rx=11985000 lat=1370000 res=COMPLETADO
+[11985000] cerrado dest=2 dato=0xffeb t_env=10615000 t_rx=11985000 lat=1370000 res=COMPLETADO
+[11985000] cerrado dest=3 dato=0xffeb t_env=10615000 t_rx=11985000 lat=1370000 res=COMPLETADO
+[12035000] [DRIVER] id=1 origen=1 destino=252 tipo=INVALIDA payload=0x199a -> D_pop=0xfc9a
+[12185000] Creado dest=1 dato=0x197 t_env=0 t_rx=12185000 lat=0 res=COMPLETADO
+[12185000] cerrado dest=1 dato=0x197 t_env=10755000 t_rx=12185000 lat=1430000 res=COMPLETADO
+[12305000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x351d -> D_pop=0xff1d
+[12385000] Creado dest=2 dato=0x2be t_env=0 t_rx=12385000 lat=0 res=COMPLETADO
+[12385000] cerrado dest=2 dato=0x2be t_env=10995000 t_rx=12385000 lat=1390000 res=COMPLETADO
+[12475000] [DRIVER] id=3 origen=3 destino=2 tipo=VALIDA payload=0x332d -> D_pop=0x22d
+[12785000] Creado dest=0 dato=0xff82 t_env=0 t_rx=12785000 lat=0 res=COMPLETADO
+[12785000] Creado dest=2 dato=0xff82 t_env=0 t_rx=12785000 lat=0 res=COMPLETADO
+[12785000] Creado dest=3 dato=0xff82 t_env=0 t_rx=12785000 lat=0 res=COMPLETADO
+[12785000] cerrado dest=0 dato=0xff82 t_env=11255000 t_rx=12785000 lat=1530000 res=COMPLETADO
+[12785000] cerrado dest=2 dato=0xff82 t_env=11255000 t_rx=12785000 lat=1530000 res=COMPLETADO
+[12785000] cerrado dest=3 dato=0xff82 t_env=11255000 t_rx=12785000 lat=1530000 res=COMPLETADO
+[12835000] [DRIVER] id=0 origen=0 destino=221 tipo=INVALIDA payload=0xa73d -> D_pop=0xdd3d
+[12925000] [DRIVER] id=1 origen=1 destino=147 tipo=INVALIDA payload=0x61f7 -> D_pop=0x93f7
+[12985000] Creado dest=0 dato=0xff7d t_env=0 t_rx=12985000 lat=0 res=COMPLETADO
+[12985000] Creado dest=1 dato=0xff7d t_env=0 t_rx=12985000 lat=0 res=COMPLETADO
+[12985000] Creado dest=3 dato=0xff7d t_env=0 t_rx=12985000 lat=0 res=COMPLETADO
+[12985000] cerrado dest=0 dato=0xff7d t_env=11605000 t_rx=12985000 lat=1380000 res=COMPLETADO
+[12985000] cerrado dest=1 dato=0xff7d t_env=11605000 t_rx=12985000 lat=1380000 res=COMPLETADO
+[12985000] cerrado dest=3 dato=0xff7d t_env=11605000 t_rx=12985000 lat=1380000 res=COMPLETADO
+[13185000] Creado dest=2 dato=0x2c8 t_env=0 t_rx=13185000 lat=0 res=COMPLETADO
+[13185000] cerrado dest=2 dato=0x2c8 t_env=11755000 t_rx=13185000 lat=1430000 res=COMPLETADO
+[13235000] [DRIVER] id=2 origen=2 destino=1 tipo=VALIDA payload=0x6bc6 -> D_pop=0x1c6
+[13235000] [DRIVER] id=3 origen=3 destino=2 tipo=VALIDA payload=0xf887 -> D_pop=0x287
+[13585000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0xac83 -> D_pop=0xff83
+[13715000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0x5096 -> D_pop=0x96
+[13785000] Creado dest=0 dato=0xff1d t_env=0 t_rx=13785000 lat=0 res=COMPLETADO
+[13785000] Creado dest=1 dato=0xff1d t_env=0 t_rx=13785000 lat=0 res=COMPLETADO
+[13785000] Creado dest=3 dato=0xff1d t_env=0 t_rx=13785000 lat=0 res=COMPLETADO
+[13785000] cerrado dest=0 dato=0xff1d t_env=12305000 t_rx=13785000 lat=1480000 res=COMPLETADO
+[13785000] cerrado dest=1 dato=0xff1d t_env=12305000 t_rx=13785000 lat=1480000 res=COMPLETADO
+[13785000] cerrado dest=3 dato=0xff1d t_env=12305000 t_rx=13785000 lat=1480000 res=COMPLETADO
+[13985000] [DRIVER] id=2 origen=2 destino=40 tipo=INVALIDA payload=0xbb34 -> D_pop=0x2834
+[13985000] Creado dest=2 dato=0x22d t_env=0 t_rx=13985000 lat=0 res=COMPLETADO
+[13985000] cerrado dest=2 dato=0x22d t_env=12475000 t_rx=13985000 lat=1510000 res=COMPLETADO
+[14045000] [DRIVER] id=3 origen=3 destino=178 tipo=INVALIDA payload=0x5c9d -> D_pop=0xb29d
+[14395000] [DRIVER] id=0 origen=0 destino=130 tipo=INVALIDA payload=0xe6d9 -> D_pop=0x82d9
+[14465000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0x94f1 -> D_pop=0xf1
+[14585000] Creado dest=1 dato=0x1c6 t_env=0 t_rx=14585000 lat=0 res=COMPLETADO
+[14585000] cerrado dest=1 dato=0x1c6 t_env=13235000 t_rx=14585000 lat=1350000 res=COMPLETADO
+[14635000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x5976 -> D_pop=0xff76
+[14785000] Creado dest=2 dato=0x287 t_env=0 t_rx=14785000 lat=0 res=COMPLETADO
+[14785000] cerrado dest=2 dato=0x287 t_env=13235000 t_rx=14785000 lat=1550000 res=COMPLETADO
+[14935000] [DRIVER] id=3 origen=3 destino=0 tipo=VALIDA payload=0x5295 -> D_pop=0x95
+[14985000] Creado dest=1 dato=0xff83 t_env=0 t_rx=14985000 lat=0 res=COMPLETADO
+[14985000] Creado dest=2 dato=0xff83 t_env=0 t_rx=14985000 lat=0 res=COMPLETADO
+[14985000] Creado dest=3 dato=0xff83 t_env=0 t_rx=14985000 lat=0 res=COMPLETADO
+[14985000] cerrado dest=1 dato=0xff83 t_env=13585000 t_rx=14985000 lat=1400000 res=COMPLETADO
+[14985000] cerrado dest=2 dato=0xff83 t_env=13585000 t_rx=14985000 lat=1400000 res=COMPLETADO
+[14985000] cerrado dest=3 dato=0xff83 t_env=13585000 t_rx=14985000 lat=1400000 res=COMPLETADO
+[15185000] Creado dest=0 dato=0x96 t_env=0 t_rx=15185000 lat=0 res=COMPLETADO
+[15185000] cerrado dest=0 dato=0x96 t_env=13715000 t_rx=15185000 lat=1470000 res=COMPLETADO
+[15235000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x76ef -> D_pop=0xffef
+[15415000] [DRIVER] id=1 origen=1 destino=195 tipo=INVALIDA payload=0x2050 -> D_pop=0xc350
+[15495000] [DRIVER] id=2 origen=2 destino=0 tipo=VALIDA payload=0x81da -> D_pop=0xda
+[15645000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xbb00 -> D_pop=0xff00
+[15985000] Creado dest=0 dato=0xf1 t_env=0 t_rx=15985000 lat=0 res=COMPLETADO
+[15985000] cerrado dest=0 dato=0xf1 t_env=14465000 t_rx=15985000 lat=1520000 res=COMPLETADO
+[16035000] [DRIVER] id=0 origen=0 destino=90 tipo=INVALIDA payload=0x19cd -> D_pop=0x5acd
+[16185000] Creado dest=0 dato=0xff76 t_env=0 t_rx=16185000 lat=0 res=COMPLETADO
+[16185000] Creado dest=1 dato=0xff76 t_env=0 t_rx=16185000 lat=0 res=COMPLETADO
+[16185000] Creado dest=3 dato=0xff76 t_env=0 t_rx=16185000 lat=0 res=COMPLETADO
+[16185000] cerrado dest=0 dato=0xff76 t_env=14635000 t_rx=16185000 lat=1550000 res=COMPLETADO
+[16185000] cerrado dest=1 dato=0xff76 t_env=14635000 t_rx=16185000 lat=1550000 res=COMPLETADO
+[16185000] cerrado dest=3 dato=0xff76 t_env=14635000 t_rx=16185000 lat=1550000 res=COMPLETADO
+[16225000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0xd63d -> D_pop=0x3d
+[16325000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x89d0 -> D_pop=0xffd0
+[16385000] Creado dest=0 dato=0x95 t_env=0 t_rx=16385000 lat=0 res=COMPLETADO
+[16385000] cerrado dest=0 dato=0x95 t_env=14935000 t_rx=16385000 lat=1450000 res=COMPLETADO
+[16545000] [DRIVER] id=3 origen=3 destino=1 tipo=VALIDA payload=0x8e85 -> D_pop=0x185
+[16585000] Creado dest=1 dato=0xffef t_env=0 t_rx=16585000 lat=0 res=COMPLETADO
+[16585000] Creado dest=2 dato=0xffef t_env=0 t_rx=16585000 lat=0 res=COMPLETADO
+[16585000] Creado dest=3 dato=0xffef t_env=0 t_rx=16585000 lat=0 res=COMPLETADO
+[16585000] cerrado dest=1 dato=0xffef t_env=15235000 t_rx=16585000 lat=1350000 res=COMPLETADO
+[16585000] cerrado dest=2 dato=0xffef t_env=15235000 t_rx=16585000 lat=1350000 res=COMPLETADO
+[16585000] cerrado dest=3 dato=0xffef t_env=15235000 t_rx=16585000 lat=1350000 res=COMPLETADO
+[16635000] [DRIVER] id=0 origen=0 destino=2 tipo=VALIDA payload=0xd426 -> D_pop=0x226
+[16965000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0xb4f2 -> D_pop=0xf2
+[16985000] Creado dest=0 dato=0xda t_env=0 t_rx=16985000 lat=0 res=COMPLETADO
+[16985000] cerrado dest=0 dato=0xda t_env=15495000 t_rx=16985000 lat=1490000 res=COMPLETADO
+[17115000] [DRIVER] id=2 origen=2 destino=3 tipo=VALIDA payload=0xf8e3 -> D_pop=0x3e3
+[17185000] Creado dest=0 dato=0xff00 t_env=0 t_rx=17185000 lat=0 res=COMPLETADO
+[17185000] Creado dest=1 dato=0xff00 t_env=0 t_rx=17185000 lat=0 res=COMPLETADO
+[17185000] Creado dest=2 dato=0xff00 t_env=0 t_rx=17185000 lat=0 res=COMPLETADO
+[17185000] cerrado dest=0 dato=0xff00 t_env=15645000 t_rx=17185000 lat=1540000 res=COMPLETADO
+[17185000] cerrado dest=1 dato=0xff00 t_env=15645000 t_rx=17185000 lat=1540000 res=COMPLETADO
+[17185000] cerrado dest=2 dato=0xff00 t_env=15645000 t_rx=17185000 lat=1540000 res=COMPLETADO
+[17315000] [DRIVER] id=3 origen=3 destino=164 tipo=INVALIDA payload=0x7992 -> D_pop=0xa492
+[17585000] Creado dest=0 dato=0x3d t_env=0 t_rx=17585000 lat=0 res=COMPLETADO
+[17585000] cerrado dest=0 dato=0x3d t_env=16225000 t_rx=17585000 lat=1360000 res=COMPLETADO
+[17615000] [DRIVER] id=0 origen=0 destino=99 tipo=INVALIDA payload=0xaef3 -> D_pop=0x63f3
+[17715000] [DRIVER] id=1 origen=1 destino=2 tipo=VALIDA payload=0xa8b2 -> D_pop=0x2b2
+[17785000] Creado dest=0 dato=0xffd0 t_env=0 t_rx=17785000 lat=0 res=COMPLETADO
+[17785000] Creado dest=1 dato=0xffd0 t_env=0 t_rx=17785000 lat=0 res=COMPLETADO
+[17785000] Creado dest=3 dato=0xffd0 t_env=0 t_rx=17785000 lat=0 res=COMPLETADO
+[17785000] cerrado dest=0 dato=0xffd0 t_env=16325000 t_rx=17785000 lat=1460000 res=COMPLETADO
+[17785000] cerrado dest=1 dato=0xffd0 t_env=16325000 t_rx=17785000 lat=1460000 res=COMPLETADO
+[17785000] cerrado dest=3 dato=0xffd0 t_env=16325000 t_rx=17785000 lat=1460000 res=COMPLETADO
+[17885000] [DRIVER] id=2 origen=2 destino=0 tipo=VALIDA payload=0x9ff1 -> D_pop=0xf1
+[17985000] Creado dest=1 dato=0x185 t_env=0 t_rx=17985000 lat=0 res=COMPLETADO
+[17985000] cerrado dest=1 dato=0x185 t_env=16545000 t_rx=17985000 lat=1440000 res=COMPLETADO
+[18185000] Creado dest=2 dato=0x226 t_env=0 t_rx=18185000 lat=0 res=COMPLETADO
+[18185000] cerrado dest=2 dato=0x226 t_env=16635000 t_rx=18185000 lat=1550000 res=COMPLETADO
+[18215000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x87ff -> D_pop=0xffff
+[18295000] [DRIVER] id=0 origen=0 destino=3 tipo=VALIDA payload=0x741e -> D_pop=0x31e
+[18385000] Creado dest=0 dato=0xf2 t_env=0 t_rx=18385000 lat=0 res=COMPLETADO
+[18385000] cerrado dest=0 dato=0xf2 t_env=16965000 t_rx=18385000 lat=1420000 res=COMPLETADO
+[18535000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0xec92 -> D_pop=0x392
+[18585000] Creado dest=3 dato=0x3e3 t_env=0 t_rx=18585000 lat=0 res=COMPLETADO
+[18585000] cerrado dest=3 dato=0x3e3 t_env=17115000 t_rx=18585000 lat=1470000 res=COMPLETADO
+[18765000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0xa534 -> D_pop=0xff34
+[18955000] [DRIVER] id=3 origen=3 destino=207 tipo=INVALIDA payload=0xacf2 -> D_pop=0xcff2
+[19115000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x4cd0 -> D_pop=0xffd0
+[19185000] Creado dest=2 dato=0x2b2 t_env=0 t_rx=19185000 lat=0 res=COMPLETADO
+[19185000] cerrado dest=2 dato=0x2b2 t_env=17715000 t_rx=19185000 lat=1470000 res=COMPLETADO
+[19385000] Creado dest=0 dato=0xf1 t_env=0 t_rx=19385000 lat=0 res=COMPLETADO
+[19385000] cerrado dest=0 dato=0xf1 t_env=17885000 t_rx=19385000 lat=1500000 res=COMPLETADO
+[19425000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x9ff7 -> D_pop=0xfff7
+[19535000] [DRIVER] id=2 origen=2 destino=1 tipo=VALIDA payload=0xf5ef -> D_pop=0x1ef
+[19585000] Creado dest=0 dato=0xffff t_env=0 t_rx=19585000 lat=0 res=COMPLETADO
+[19585000] Creado dest=1 dato=0xffff t_env=0 t_rx=19585000 lat=0 res=COMPLETADO
+[19585000] Creado dest=2 dato=0xffff t_env=0 t_rx=19585000 lat=0 res=COMPLETADO
+[19585000] cerrado dest=0 dato=0xffff t_env=18215000 t_rx=19585000 lat=1370000 res=COMPLETADO
+[19585000] cerrado dest=1 dato=0xffff t_env=35000 t_rx=19585000 lat=19550000 res=COMPLETADO
+[19585000] cerrado dest=2 dato=0xffff t_env=35000 t_rx=19585000 lat=19550000 res=COMPLETADO
+[19785000] Creado dest=3 dato=0x31e t_env=0 t_rx=19785000 lat=0 res=COMPLETADO
+[19785000] cerrado dest=3 dato=0x31e t_env=18295000 t_rx=19785000 lat=1490000 res=COMPLETADO
+[19815000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xca43 -> D_pop=0xff43
+[19925000] [DRIVER] id=0 origen=0 destino=221 tipo=INVALIDA payload=0xa455 -> D_pop=0xdd55
+[19985000] Creado dest=3 dato=0x392 t_env=0 t_rx=19985000 lat=0 res=COMPLETADO
+[19985000] cerrado dest=3 dato=0x392 t_env=18535000 t_rx=19985000 lat=1450000 res=COMPLETADO
+[20075000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0x7c4d -> D_pop=0x34d
+[20185000] Creado dest=0 dato=0xff34 t_env=0 t_rx=20185000 lat=0 res=COMPLETADO
+[20185000] Creado dest=1 dato=0xff34 t_env=0 t_rx=20185000 lat=0 res=COMPLETADO
+[20185000] Creado dest=3 dato=0xff34 t_env=0 t_rx=20185000 lat=0 res=COMPLETADO
+[20185000] cerrado dest=0 dato=0xff34 t_env=18765000 t_rx=20185000 lat=1420000 res=COMPLETADO
+[20185000] cerrado dest=1 dato=0xff34 t_env=18765000 t_rx=20185000 lat=1420000 res=COMPLETADO
+[20185000] cerrado dest=3 dato=0xff34 t_env=18765000 t_rx=20185000 lat=1420000 res=COMPLETADO
+[20245000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0xcd44 -> D_pop=0xff44
+[20585000] Creado dest=1 dato=0xffd0 t_env=0 t_rx=20585000 lat=0 res=COMPLETADO
+[20585000] Creado dest=2 dato=0xffd0 t_env=0 t_rx=20585000 lat=0 res=COMPLETADO
+[20585000] Creado dest=3 dato=0xffd0 t_env=0 t_rx=20585000 lat=0 res=COMPLETADO
+[20585000] cerrado dest=1 dato=0xffd0 t_env=19115000 t_rx=20585000 lat=1470000 res=COMPLETADO
+[20585000] cerrado dest=2 dato=0xffd0 t_env=19115000 t_rx=20585000 lat=1470000 res=COMPLETADO
+[20585000] cerrado dest=3 dato=0xffd0 t_env=19115000 t_rx=20585000 lat=1470000 res=COMPLETADO
+[20605000] [DRIVER] id=3 origen=3 destino=101 tipo=INVALIDA payload=0xdc20 -> D_pop=0x6520
+[20785000] Creado dest=0 dato=0xfff7 t_env=0 t_rx=20785000 lat=0 res=COMPLETADO
+[20785000] Creado dest=2 dato=0xfff7 t_env=0 t_rx=20785000 lat=0 res=COMPLETADO
+[20785000] Creado dest=3 dato=0xfff7 t_env=0 t_rx=20785000 lat=0 res=COMPLETADO
+[20785000] cerrado dest=0 dato=0xfff7 t_env=19425000 t_rx=20785000 lat=1360000 res=COMPLETADO
+[20785000] cerrado dest=2 dato=0xfff7 t_env=19425000 t_rx=20785000 lat=1360000 res=COMPLETADO
+[20785000] cerrado dest=3 dato=0xfff7 t_env=19425000 t_rx=20785000 lat=1360000 res=COMPLETADO
+[20805000] [DRIVER] id=0 origen=0 destino=132 tipo=INVALIDA payload=0xed5 -> D_pop=0x84d5
+[20985000] Creado dest=1 dato=0x1ef t_env=0 t_rx=20985000 lat=0 res=COMPLETADO
+[20985000] cerrado dest=1 dato=0x1ef t_env=19535000 t_rx=20985000 lat=1450000 res=COMPLETADO
+[20995000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0xb81b -> D_pop=0x31b
+[21075000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0xfd06 -> D_pop=0xff06
+[21185000] Creado dest=0 dato=0xff43 t_env=0 t_rx=21185000 lat=0 res=COMPLETADO
+[21185000] Creado dest=1 dato=0xff43 t_env=0 t_rx=21185000 lat=0 res=COMPLETADO
+[21185000] Creado dest=2 dato=0xff43 t_env=0 t_rx=21185000 lat=0 res=COMPLETADO
+[21185000] cerrado dest=0 dato=0xff43 t_env=19815000 t_rx=21185000 lat=1370000 res=COMPLETADO
+[21185000] cerrado dest=1 dato=0xff43 t_env=19815000 t_rx=21185000 lat=1370000 res=COMPLETADO
+[21185000] cerrado dest=2 dato=0xff43 t_env=19815000 t_rx=21185000 lat=1370000 res=COMPLETADO
+[21325000] [DRIVER] id=3 origen=3 destino=0 tipo=VALIDA payload=0xf2b -> D_pop=0x2b
+[21475000] [DRIVER] id=0 origen=0 destino=235 tipo=INVALIDA payload=0xcba5 -> D_pop=0xeba5
+[21585000] Creado dest=3 dato=0x34d t_env=0 t_rx=21585000 lat=0 res=COMPLETADO
+[21585000] cerrado dest=3 dato=0x34d t_env=20075000 t_rx=21585000 lat=1510000 res=COMPLETADO
+[21655000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xd844 -> D_pop=0xff44
+[21785000] Creado dest=0 dato=0xff44 t_env=0 t_rx=21785000 lat=0 res=COMPLETADO
+[21785000] Creado dest=1 dato=0xff44 t_env=0 t_rx=21785000 lat=0 res=COMPLETADO
+[21785000] Creado dest=3 dato=0xff44 t_env=0 t_rx=21785000 lat=0 res=COMPLETADO
+[21785000] cerrado dest=0 dato=0xff44 t_env=20245000 t_rx=21785000 lat=1540000 res=COMPLETADO
+[21785000] cerrado dest=1 dato=0xff44 t_env=20245000 t_rx=21785000 lat=1540000 res=COMPLETADO
+[21785000] cerrado dest=3 dato=0xff44 t_env=20245000 t_rx=21785000 lat=1540000 res=COMPLETADO
+[21915000] [DRIVER] id=2 origen=2 destino=3 tipo=VALIDA payload=0x413 -> D_pop=0x313
+[22145000] [DRIVER] id=3 origen=3 destino=162 tipo=INVALIDA payload=0x73c -> D_pop=0xa23c
+[22265000] [DRIVER] id=0 origen=0 destino=37 tipo=INVALIDA payload=0x18f7 -> D_pop=0x25f7
+[22385000] Creado dest=3 dato=0x31b t_env=0 t_rx=22385000 lat=0 res=COMPLETADO
+[22385000] cerrado dest=3 dato=0x31b t_env=20995000 t_rx=22385000 lat=1390000 res=COMPLETADO
+[22565000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xdd89 -> D_pop=0xff89
+[22585000] Creado dest=0 dato=0xff06 t_env=0 t_rx=22585000 lat=0 res=COMPLETADO
+[22585000] Creado dest=1 dato=0xff06 t_env=0 t_rx=22585000 lat=0 res=COMPLETADO
+[22585000] Creado dest=3 dato=0xff06 t_env=0 t_rx=22585000 lat=0 res=COMPLETADO
+[22585000] cerrado dest=0 dato=0xff06 t_env=21075000 t_rx=22585000 lat=1510000 res=COMPLETADO
+[22585000] cerrado dest=1 dato=0xff06 t_env=21075000 t_rx=22585000 lat=1510000 res=COMPLETADO
+[22585000] cerrado dest=3 dato=0xff06 t_env=21075000 t_rx=22585000 lat=1510000 res=COMPLETADO
+[22715000] [DRIVER] id=2 origen=2 destino=0 tipo=VALIDA payload=0xc14d -> D_pop=0x4d
+[22785000] Creado dest=0 dato=0x2b t_env=0 t_rx=22785000 lat=0 res=COMPLETADO
+[22785000] cerrado dest=0 dato=0x2b t_env=21325000 t_rx=22785000 lat=1460000 res=COMPLETADO
+[22935000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xa363 -> D_pop=0xff63
+[23075000] [DRIVER] id=0 origen=0 destino=3 tipo=VALIDA payload=0x6bb7 -> D_pop=0x3b7
+[23185000] Creado dest=0 dato=0xff44 t_env=0 t_rx=23185000 lat=0 res=COMPLETADO
+[23185000] Creado dest=2 dato=0xff44 t_env=0 t_rx=23185000 lat=0 res=COMPLETADO
+[23185000] Creado dest=3 dato=0xff44 t_env=0 t_rx=23185000 lat=0 res=COMPLETADO
+[23185000] cerrado dest=0 dato=0xff44 t_env=21655000 t_rx=23185000 lat=1530000 res=COMPLETADO
+[23185000] cerrado dest=2 dato=0xff44 t_env=21655000 t_rx=23185000 lat=1530000 res=COMPLETADO
+[23185000] cerrado dest=3 dato=0xff44 t_env=21655000 t_rx=23185000 lat=1530000 res=COMPLETADO
+[23325000] [DRIVER] id=1 origen=1 destino=2 tipo=VALIDA payload=0x6b7a -> D_pop=0x27a
+[23385000] Creado dest=3 dato=0x313 t_env=0 t_rx=23385000 lat=0 res=COMPLETADO
+[23385000] cerrado dest=3 dato=0x313 t_env=21915000 t_rx=23385000 lat=1470000 res=COMPLETADO
+[23455000] [DRIVER] id=2 origen=2 destino=255 tipo=BROADCAST payload=0x75f2 -> D_pop=0xfff2
+[23665000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x5562 -> D_pop=0xff62
+[23865000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x49b0 -> D_pop=0x1b0
+[23985000] Creado dest=0 dato=0xff89 t_env=0 t_rx=23985000 lat=0 res=COMPLETADO
+[23985000] Creado dest=2 dato=0xff89 t_env=0 t_rx=23985000 lat=0 res=COMPLETADO
+[23985000] Creado dest=3 dato=0xff89 t_env=0 t_rx=23985000 lat=0 res=COMPLETADO
+[23985000] cerrado dest=0 dato=0xff89 t_env=22565000 t_rx=23985000 lat=1420000 res=COMPLETADO
+[23985000] cerrado dest=2 dato=0xff89 t_env=22565000 t_rx=23985000 lat=1420000 res=COMPLETADO
+[23985000] cerrado dest=3 dato=0xff89 t_env=22565000 t_rx=23985000 lat=1420000 res=COMPLETADO
+[24185000] Creado dest=0 dato=0x4d t_env=0 t_rx=24185000 lat=0 res=COMPLETADO
+[24185000] cerrado dest=0 dato=0x4d t_env=22715000 t_rx=24185000 lat=1470000 res=COMPLETADO
+[24205000] [DRIVER] id=1 origen=1 destino=30 tipo=INVALIDA payload=0xbaa5 -> D_pop=0x1ea5
+[24385000] Creado dest=0 dato=0xff63 t_env=0 t_rx=24385000 lat=0 res=COMPLETADO
+[24385000] Creado dest=1 dato=0xff63 t_env=0 t_rx=24385000 lat=0 res=COMPLETADO
+[24385000] Creado dest=2 dato=0xff63 t_env=0 t_rx=24385000 lat=0 res=COMPLETADO
+[24385000] cerrado dest=0 dato=0xff63 t_env=22935000 t_rx=24385000 lat=1450000 res=COMPLETADO
+[24385000] cerrado dest=1 dato=0xff63 t_env=22935000 t_rx=24385000 lat=1450000 res=COMPLETADO
+[24385000] cerrado dest=2 dato=0xff63 t_env=22935000 t_rx=24385000 lat=1450000 res=COMPLETADO
+[24395000] [DRIVER] id=2 origen=2 destino=1 tipo=VALIDA payload=0x8149 -> D_pop=0x149
+[24495000] [DRIVER] id=3 origen=3 destino=23 tipo=INVALIDA payload=0x17dd -> D_pop=0x17dd
+[24585000] Creado dest=3 dato=0x3b7 t_env=0 t_rx=24585000 lat=0 res=COMPLETADO
+[24585000] cerrado dest=3 dato=0x3b7 t_env=23075000 t_rx=24585000 lat=1510000 res=COMPLETADO
+[24705000] [DRIVER] id=0 origen=0 destino=187 tipo=INVALIDA payload=0x6a7f -> D_pop=0xbb7f
+[24785000] Creado dest=2 dato=0x27a t_env=0 t_rx=24785000 lat=0 res=COMPLETADO
+[24785000] cerrado dest=2 dato=0x27a t_env=23325000 t_rx=24785000 lat=1460000 res=COMPLETADO
+[24835000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xf8fb -> D_pop=0xfffb
+[24985000] Creado dest=0 dato=0xfff2 t_env=0 t_rx=24985000 lat=0 res=COMPLETADO
+[24985000] Creado dest=1 dato=0xfff2 t_env=0 t_rx=24985000 lat=0 res=COMPLETADO
+[24985000] Creado dest=3 dato=0xfff2 t_env=0 t_rx=24985000 lat=0 res=COMPLETADO
+[24985000] cerrado dest=0 dato=0xfff2 t_env=23455000 t_rx=24985000 lat=1530000 res=COMPLETADO
+[24985000] cerrado dest=1 dato=0xfff2 t_env=23455000 t_rx=24985000 lat=1530000 res=COMPLETADO
+[24985000] cerrado dest=3 dato=0xfff2 t_env=23455000 t_rx=24985000 lat=1530000 res=COMPLETADO
+[25115000] [DRIVER] id=2 origen=2 destino=11 tipo=INVALIDA payload=0xf4ce -> D_pop=0xbce
+[25185000] Creado dest=0 dato=0xff62 t_env=0 t_rx=25185000 lat=0 res=COMPLETADO
+[25185000] Creado dest=1 dato=0xff62 t_env=0 t_rx=25185000 lat=0 res=COMPLETADO
+[25185000] Creado dest=2 dato=0xff62 t_env=0 t_rx=25185000 lat=0 res=COMPLETADO
+[25185000] cerrado dest=0 dato=0xff62 t_env=23665000 t_rx=25185000 lat=1520000 res=COMPLETADO
+[25185000] cerrado dest=1 dato=0xff62 t_env=23665000 t_rx=25185000 lat=1520000 res=COMPLETADO
+[25185000] cerrado dest=2 dato=0xff62 t_env=23665000 t_rx=25185000 lat=1520000 res=COMPLETADO
+[25275000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xf190 -> D_pop=0xff90
+[25385000] Creado dest=1 dato=0x1b0 t_env=0 t_rx=25385000 lat=0 res=COMPLETADO
+[25385000] cerrado dest=1 dato=0x1b0 t_env=23865000 t_rx=25385000 lat=1520000 res=COMPLETADO
+[25475000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0xc3d3 -> D_pop=0xffd3
+[25635000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x896b -> D_pop=0xff6b
+[25785000] Creado dest=1 dato=0x149 t_env=0 t_rx=25785000 lat=0 res=COMPLETADO
+[25785000] cerrado dest=1 dato=0x149 t_env=24395000 t_rx=25785000 lat=1390000 res=COMPLETADO
+[25915000] [DRIVER] id=2 origen=2 destino=0 tipo=VALIDA payload=0x3177 -> D_pop=0x77
+[26125000] [DRIVER] id=3 origen=3 destino=2 tipo=VALIDA payload=0x6e0d -> D_pop=0x20d
+[26355000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0xf57d -> D_pop=0x17d
+[26385000] Creado dest=0 dato=0xfffb t_env=0 t_rx=26385000 lat=0 res=COMPLETADO
+[26385000] Creado dest=2 dato=0xfffb t_env=0 t_rx=26385000 lat=0 res=COMPLETADO
+[26385000] Creado dest=3 dato=0xfffb t_env=0 t_rx=26385000 lat=0 res=COMPLETADO
+[26385000] cerrado dest=0 dato=0xfffb t_env=24835000 t_rx=26385000 lat=1550000 res=COMPLETADO
+[26385000] cerrado dest=2 dato=0xfffb t_env=24835000 t_rx=26385000 lat=1550000 res=COMPLETADO
+[26385000] cerrado dest=3 dato=0xfffb t_env=24835000 t_rx=26385000 lat=1550000 res=COMPLETADO
+[26575000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0x26c3 -> D_pop=0x3c3
+[26785000] [DRIVER] id=2 origen=2 destino=19 tipo=INVALIDA payload=0x7a38 -> D_pop=0x1338
+[26785000] Creado dest=0 dato=0xff90 t_env=0 t_rx=26785000 lat=0 res=COMPLETADO
+[26785000] Creado dest=1 dato=0xff90 t_env=0 t_rx=26785000 lat=0 res=COMPLETADO
+[26785000] Creado dest=2 dato=0xff90 t_env=0 t_rx=26785000 lat=0 res=COMPLETADO
+[26785000] cerrado dest=0 dato=0xff90 t_env=25275000 t_rx=26785000 lat=1510000 res=COMPLETADO
+[26785000] cerrado dest=1 dato=0xff90 t_env=25275000 t_rx=26785000 lat=1510000 res=COMPLETADO
+[26785000] cerrado dest=2 dato=0xff90 t_env=25275000 t_rx=26785000 lat=1510000 res=COMPLETADO
+[26875000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x17aa -> D_pop=0xffaa
+[26985000] Creado dest=1 dato=0xffd3 t_env=0 t_rx=26985000 lat=0 res=COMPLETADO
+[26985000] Creado dest=2 dato=0xffd3 t_env=0 t_rx=26985000 lat=0 res=COMPLETADO
+[26985000] Creado dest=3 dato=0xffd3 t_env=0 t_rx=26985000 lat=0 res=COMPLETADO
+[26985000] cerrado dest=1 dato=0xffd3 t_env=25475000 t_rx=26985000 lat=1510000 res=COMPLETADO
+[26985000] cerrado dest=2 dato=0xffd3 t_env=25475000 t_rx=26985000 lat=1510000 res=COMPLETADO
+[26985000] cerrado dest=3 dato=0xffd3 t_env=25475000 t_rx=26985000 lat=1510000 res=COMPLETADO
+[27115000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x94f1 -> D_pop=0xfff1
+[27185000] Creado dest=0 dato=0xff6b t_env=0 t_rx=27185000 lat=0 res=COMPLETADO
+[27185000] Creado dest=2 dato=0xff6b t_env=0 t_rx=27185000 lat=0 res=COMPLETADO
+[27185000] Creado dest=3 dato=0xff6b t_env=0 t_rx=27185000 lat=0 res=COMPLETADO
+[27185000] cerrado dest=0 dato=0xff6b t_env=25635000 t_rx=27185000 lat=1550000 res=COMPLETADO
+[27185000] cerrado dest=2 dato=0xff6b t_env=25635000 t_rx=27185000 lat=1550000 res=COMPLETADO
+[27185000] cerrado dest=3 dato=0xff6b t_env=25635000 t_rx=27185000 lat=1550000 res=COMPLETADO
+[27355000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xa31 -> D_pop=0xff31
+[27385000] Creado dest=0 dato=0x77 t_env=0 t_rx=27385000 lat=0 res=COMPLETADO
+[27385000] cerrado dest=0 dato=0x77 t_env=25915000 t_rx=27385000 lat=1470000 res=COMPLETADO
+[27455000] [DRIVER] id=2 origen=2 destino=202 tipo=INVALIDA payload=0x7d6c -> D_pop=0xca6c
+[27585000] Creado dest=2 dato=0x20d t_env=0 t_rx=27585000 lat=0 res=COMPLETADO
+[27585000] cerrado dest=2 dato=0x20d t_env=26125000 t_rx=27585000 lat=1460000 res=COMPLETADO
+[27785000] [DRIVER] id=3 origen=3 destino=1 tipo=VALIDA payload=0xd6dc -> D_pop=0x1dc
+[27785000] Creado dest=1 dato=0x17d t_env=0 t_rx=27785000 lat=0 res=COMPLETADO
+[27785000] cerrado dest=1 dato=0x17d t_env=26355000 t_rx=27785000 lat=1430000 res=COMPLETADO
+[27985000] Creado dest=3 dato=0x3c3 t_env=0 t_rx=27985000 lat=0 res=COMPLETADO
+[27985000] cerrado dest=3 dato=0x3c3 t_env=26575000 t_rx=27985000 lat=1410000 res=COMPLETADO
+[28015000] [DRIVER] id=0 origen=0 destino=18 tipo=INVALIDA payload=0x4226 -> D_pop=0x1226
+[28155000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0x20ba -> D_pop=0x3ba
+[28285000] [DRIVER] id=2 origen=2 destino=94 tipo=INVALIDA payload=0x9eda -> D_pop=0x5eda
+[28385000] Creado dest=0 dato=0xffaa t_env=0 t_rx=28385000 lat=0 res=COMPLETADO
+[28385000] Creado dest=1 dato=0xffaa t_env=0 t_rx=28385000 lat=0 res=COMPLETADO
+[28385000] Creado dest=2 dato=0xffaa t_env=0 t_rx=28385000 lat=0 res=COMPLETADO
+[28385000] cerrado dest=0 dato=0xffaa t_env=26875000 t_rx=28385000 lat=1510000 res=COMPLETADO
+[28385000] cerrado dest=1 dato=0xffaa t_env=26875000 t_rx=28385000 lat=1510000 res=COMPLETADO
+[28385000] cerrado dest=2 dato=0xffaa t_env=26875000 t_rx=28385000 lat=1510000 res=COMPLETADO
+[28585000] Creado dest=1 dato=0xfff1 t_env=0 t_rx=28585000 lat=0 res=COMPLETADO
+[28585000] Creado dest=2 dato=0xfff1 t_env=0 t_rx=28585000 lat=0 res=COMPLETADO
+[28585000] Creado dest=3 dato=0xfff1 t_env=0 t_rx=28585000 lat=0 res=COMPLETADO
+[28585000] cerrado dest=1 dato=0xfff1 t_env=27115000 t_rx=28585000 lat=1470000 res=COMPLETADO
+[28585000] cerrado dest=2 dato=0xfff1 t_env=27115000 t_rx=28585000 lat=1470000 res=COMPLETADO
+[28585000] cerrado dest=3 dato=0xfff1 t_env=27115000 t_rx=28585000 lat=1470000 res=COMPLETADO
+[28635000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xb6a1 -> D_pop=0xffa1
+[28785000] Creado dest=0 dato=0xff31 t_env=0 t_rx=28785000 lat=0 res=COMPLETADO
+[28785000] Creado dest=2 dato=0xff31 t_env=0 t_rx=28785000 lat=0 res=COMPLETADO
+[28785000] Creado dest=3 dato=0xff31 t_env=0 t_rx=28785000 lat=0 res=COMPLETADO
+[28785000] cerrado dest=0 dato=0xff31 t_env=27355000 t_rx=28785000 lat=1430000 res=COMPLETADO
+[28785000] cerrado dest=2 dato=0xff31 t_env=27355000 t_rx=28785000 lat=1430000 res=COMPLETADO
+[28785000] cerrado dest=3 dato=0xff31 t_env=27355000 t_rx=28785000 lat=1430000 res=COMPLETADO
+[28815000] [DRIVER] id=0 origen=0 destino=175 tipo=INVALIDA payload=0xfa1e -> D_pop=0xaf1e
+[29025000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0x5d95 -> D_pop=0x95
+[29155000] [DRIVER] id=2 origen=2 destino=1 tipo=VALIDA payload=0x93ac -> D_pop=0x1ac
+[29185000] Creado dest=1 dato=0x1dc t_env=0 t_rx=29185000 lat=0 res=COMPLETADO
+[29185000] cerrado dest=1 dato=0x1dc t_env=27785000 t_rx=29185000 lat=1400000 res=COMPLETADO
+[29355000] [DRIVER] id=3 origen=3 destino=1 tipo=VALIDA payload=0x7c74 -> D_pop=0x174
+[29475000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0xaa91 -> D_pop=0xff91
+[29585000] Creado dest=3 dato=0x3ba t_env=0 t_rx=29585000 lat=0 res=COMPLETADO
+[29585000] cerrado dest=3 dato=0x3ba t_env=28155000 t_rx=29585000 lat=1430000 res=COMPLETADO
+[29705000] [DRIVER] id=1 origen=1 destino=6 tipo=INVALIDA payload=0xc7dc -> D_pop=0x6dc
+[29985000] Creado dest=0 dato=0xffa1 t_env=0 t_rx=29985000 lat=0 res=COMPLETADO
+[29985000] Creado dest=1 dato=0xffa1 t_env=0 t_rx=29985000 lat=0 res=COMPLETADO
+[29985000] Creado dest=2 dato=0xffa1 t_env=0 t_rx=29985000 lat=0 res=COMPLETADO
+[29985000] cerrado dest=0 dato=0xffa1 t_env=28635000 t_rx=29985000 lat=1350000 res=COMPLETADO
+[29985000] cerrado dest=1 dato=0xffa1 t_env=28635000 t_rx=29985000 lat=1350000 res=COMPLETADO
+[29985000] cerrado dest=2 dato=0xffa1 t_env=28635000 t_rx=29985000 lat=1350000 res=COMPLETADO
+[29995000] [DRIVER] id=2 origen=2 destino=0 tipo=VALIDA payload=0xd731 -> D_pop=0x31
+[30195000] [DRIVER] id=3 origen=3 destino=0 tipo=VALIDA payload=0x7f1 -> D_pop=0xf1
+[30345000] [DRIVER] id=0 origen=0 destino=2 tipo=VALIDA payload=0x88ee -> D_pop=0x2ee
+[30385000] Creado dest=0 dato=0x95 t_env=0 t_rx=30385000 lat=0 res=COMPLETADO
+[30385000] cerrado dest=0 dato=0x95 t_env=29025000 t_rx=30385000 lat=1360000 res=COMPLETADO
+[30585000] Creado dest=1 dato=0x1ac t_env=0 t_rx=30585000 lat=0 res=COMPLETADO
+[30585000] cerrado dest=1 dato=0x1ac t_env=29155000 t_rx=30585000 lat=1430000 res=COMPLETADO
+[30625000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x9abf -> D_pop=0xffbf
+[30665000] [DRIVER] id=2 origen=2 destino=131 tipo=INVALIDA payload=0x3034 -> D_pop=0x8334
+[30785000] Creado dest=1 dato=0x174 t_env=0 t_rx=30785000 lat=0 res=COMPLETADO
+[30785000] cerrado dest=1 dato=0x174 t_env=29355000 t_rx=30785000 lat=1430000 res=COMPLETADO
+[30945000] [DRIVER] id=3 origen=3 destino=186 tipo=INVALIDA payload=0x1255 -> D_pop=0xba55
+[30985000] Creado dest=1 dato=0xff91 t_env=0 t_rx=30985000 lat=0 res=COMPLETADO
+[30985000] Creado dest=2 dato=0xff91 t_env=0 t_rx=30985000 lat=0 res=COMPLETADO
+[30985000] Creado dest=3 dato=0xff91 t_env=0 t_rx=30985000 lat=0 res=COMPLETADO
+[30985000] cerrado dest=1 dato=0xff91 t_env=29475000 t_rx=30985000 lat=1510000 res=COMPLETADO
+[30985000] cerrado dest=2 dato=0xff91 t_env=29475000 t_rx=30985000 lat=1510000 res=COMPLETADO
+[30985000] cerrado dest=3 dato=0xff91 t_env=29475000 t_rx=30985000 lat=1510000 res=COMPLETADO
+[31075000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x39f4 -> D_pop=0x1f4
+[31355000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0x23c0 -> D_pop=0xc0
+[31385000] Creado dest=0 dato=0x31 t_env=0 t_rx=31385000 lat=0 res=COMPLETADO
+[31385000] cerrado dest=0 dato=0x31 t_env=29995000 t_rx=31385000 lat=1390000 res=COMPLETADO
+[31565000] [DRIVER] id=2 origen=2 destino=196 tipo=INVALIDA payload=0x4c8d -> D_pop=0xc48d
+[31585000] Creado dest=0 dato=0xf1 t_env=0 t_rx=31585000 lat=0 res=COMPLETADO
+[31585000] cerrado dest=0 dato=0xf1 t_env=30195000 t_rx=31585000 lat=1390000 res=COMPLETADO
+[31675000] [DRIVER] id=3 origen=3 destino=230 tipo=INVALIDA payload=0xf990 -> D_pop=0xe690
+[31785000] Creado dest=2 dato=0x2ee t_env=0 t_rx=31785000 lat=0 res=COMPLETADO
+[31785000] cerrado dest=2 dato=0x2ee t_env=30345000 t_rx=31785000 lat=1440000 res=COMPLETADO
+[31925000] [DRIVER] id=0 origen=0 destino=2 tipo=VALIDA payload=0x8082 -> D_pop=0x282
+[31985000] Creado dest=0 dato=0xffbf t_env=0 t_rx=31985000 lat=0 res=COMPLETADO
+[31985000] Creado dest=2 dato=0xffbf t_env=0 t_rx=31985000 lat=0 res=COMPLETADO
+[31985000] Creado dest=3 dato=0xffbf t_env=0 t_rx=31985000 lat=0 res=COMPLETADO
+[31985000] cerrado dest=0 dato=0xffbf t_env=30625000 t_rx=31985000 lat=1360000 res=COMPLETADO
+[31985000] cerrado dest=2 dato=0xffbf t_env=30625000 t_rx=31985000 lat=1360000 res=COMPLETADO
+[31985000] cerrado dest=3 dato=0xffbf t_env=30625000 t_rx=31985000 lat=1360000 res=COMPLETADO
+[32065000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xeff8 -> D_pop=0xfff8
+[32425000] [DRIVER] id=2 origen=2 destino=1 tipo=VALIDA payload=0x59eb -> D_pop=0x1eb
+[32495000] [DRIVER] id=3 origen=3 destino=151 tipo=INVALIDA payload=0xfa2d -> D_pop=0x972d
+[32585000] Creado dest=1 dato=0x1f4 t_env=0 t_rx=32585000 lat=0 res=COMPLETADO
+[32585000] cerrado dest=1 dato=0x1f4 t_env=31075000 t_rx=32585000 lat=1510000 res=COMPLETADO
+[32705000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x70a9 -> D_pop=0xffa9
+[32785000] Creado dest=0 dato=0xc0 t_env=0 t_rx=32785000 lat=0 res=COMPLETADO
+[32785000] cerrado dest=0 dato=0xc0 t_env=31355000 t_rx=32785000 lat=1430000 res=COMPLETADO
+[32905000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x5333 -> D_pop=0xff33
+[33135000] [DRIVER] id=2 origen=2 destino=3 tipo=VALIDA payload=0x8cbd -> D_pop=0x3bd
+[33365000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x4ea9 -> D_pop=0xffa9
+[33385000] Creado dest=2 dato=0x282 t_env=0 t_rx=33385000 lat=0 res=COMPLETADO
+[33385000] cerrado dest=2 dato=0x282 t_env=31925000 t_rx=33385000 lat=1460000 res=COMPLETADO
+[33585000] Creado dest=0 dato=0xfff8 t_env=0 t_rx=33585000 lat=0 res=COMPLETADO
+[33585000] Creado dest=2 dato=0xfff8 t_env=0 t_rx=33585000 lat=0 res=COMPLETADO
+[33585000] Creado dest=3 dato=0xfff8 t_env=0 t_rx=33585000 lat=0 res=COMPLETADO
+[33585000] cerrado dest=0 dato=0xfff8 t_env=32065000 t_rx=33585000 lat=1520000 res=COMPLETADO
+[33585000] cerrado dest=2 dato=0xfff8 t_env=32065000 t_rx=33585000 lat=1520000 res=COMPLETADO
+[33585000] cerrado dest=3 dato=0xfff8 t_env=32065000 t_rx=33585000 lat=1520000 res=COMPLETADO
+[33595000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0xff18 -> D_pop=0x118
+[33775000] [DRIVER] id=1 origen=1 destino=2 tipo=VALIDA payload=0x6eef -> D_pop=0x2ef
+[33785000] Creado dest=1 dato=0x1eb t_env=0 t_rx=33785000 lat=0 res=COMPLETADO
+[33785000] cerrado dest=1 dato=0x1eb t_env=32425000 t_rx=33785000 lat=1360000 res=COMPLETADO
+[33855000] [DRIVER] id=2 origen=2 destino=153 tipo=INVALIDA payload=0xfd75 -> D_pop=0x9975
+[34185000] Creado dest=1 dato=0xffa9 t_env=0 t_rx=34185000 lat=0 res=COMPLETADO
+[34185000] Creado dest=2 dato=0xffa9 t_env=0 t_rx=34185000 lat=0 res=COMPLETADO
+[34185000] Creado dest=3 dato=0xffa9 t_env=0 t_rx=34185000 lat=0 res=COMPLETADO
+[34185000] cerrado dest=1 dato=0xffa9 t_env=32705000 t_rx=34185000 lat=1480000 res=COMPLETADO
+[34185000] cerrado dest=2 dato=0xffa9 t_env=32705000 t_rx=34185000 lat=1480000 res=COMPLETADO
+[34185000] cerrado dest=3 dato=0xffa9 t_env=32705000 t_rx=34185000 lat=1480000 res=COMPLETADO
+[34235000] [DRIVER] id=3 origen=3 destino=2 tipo=VALIDA payload=0x5df0 -> D_pop=0x2f0
+[34245000] [DRIVER] id=0 origen=0 destino=3 tipo=VALIDA payload=0xc2d6 -> D_pop=0x3d6
+[34385000] Creado dest=0 dato=0xff33 t_env=0 t_rx=34385000 lat=0 res=COMPLETADO
+[34385000] Creado dest=2 dato=0xff33 t_env=0 t_rx=34385000 lat=0 res=COMPLETADO
+[34385000] Creado dest=3 dato=0xff33 t_env=0 t_rx=34385000 lat=0 res=COMPLETADO
+[34385000] cerrado dest=0 dato=0xff33 t_env=32905000 t_rx=34385000 lat=1480000 res=COMPLETADO
+[34385000] cerrado dest=2 dato=0xff33 t_env=32905000 t_rx=34385000 lat=1480000 res=COMPLETADO
+[34385000] cerrado dest=3 dato=0xff33 t_env=32905000 t_rx=34385000 lat=1480000 res=COMPLETADO
+[34585000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x45ab -> D_pop=0xffab
+[34585000] Creado dest=3 dato=0x3bd t_env=0 t_rx=34585000 lat=0 res=COMPLETADO
+[34585000] cerrado dest=3 dato=0x3bd t_env=33135000 t_rx=34585000 lat=1450000 res=COMPLETADO
+[34695000] [DRIVER] id=2 origen=2 destino=168 tipo=INVALIDA payload=0x1c4b -> D_pop=0xa84b
+[34785000] Creado dest=0 dato=0xffa9 t_env=0 t_rx=34785000 lat=0 res=COMPLETADO
+[34785000] Creado dest=1 dato=0xffa9 t_env=0 t_rx=34785000 lat=0 res=COMPLETADO
+[34785000] Creado dest=2 dato=0xffa9 t_env=0 t_rx=34785000 lat=0 res=COMPLETADO
+[34785000] cerrado dest=0 dato=0xffa9 t_env=33365000 t_rx=34785000 lat=1420000 res=COMPLETADO
+[34785000] cerrado dest=1 dato=0xffa9 t_env=33365000 t_rx=34785000 lat=1420000 res=COMPLETADO
+[34785000] cerrado dest=2 dato=0xffa9 t_env=33365000 t_rx=34785000 lat=1420000 res=COMPLETADO
+[34915000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x4987 -> D_pop=0xff87
+[34985000] Creado dest=1 dato=0x118 t_env=0 t_rx=34985000 lat=0 res=COMPLETADO
+[34985000] cerrado dest=1 dato=0x118 t_env=33595000 t_rx=34985000 lat=1390000 res=COMPLETADO
+[35085000] [DRIVER] id=0 origen=0 destino=120 tipo=INVALIDA payload=0xe784 -> D_pop=0x7884
+[35185000] Creado dest=2 dato=0x2ef t_env=0 t_rx=35185000 lat=0 res=COMPLETADO
+[35185000] cerrado dest=2 dato=0x2ef t_env=33775000 t_rx=35185000 lat=1410000 res=COMPLETADO
+[35325000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0x456a -> D_pop=0x6a
+[35515000] [DRIVER] id=2 origen=2 destino=63 tipo=INVALIDA payload=0xee38 -> D_pop=0x3f38
+[35585000] Creado dest=2 dato=0x2f0 t_env=0 t_rx=35585000 lat=0 res=COMPLETADO
+[35585000] cerrado dest=2 dato=0x2f0 t_env=34235000 t_rx=35585000 lat=1350000 res=COMPLETADO
+[35735000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x621f -> D_pop=0xff1f
+[35785000] Creado dest=3 dato=0x3d6 t_env=0 t_rx=35785000 lat=0 res=COMPLETADO
+[35785000] cerrado dest=3 dato=0x3d6 t_env=34245000 t_rx=35785000 lat=1540000 res=COMPLETADO
+[35895000] [DRIVER] id=0 origen=0 destino=2 tipo=VALIDA payload=0x5931 -> D_pop=0x231
+[35985000] Creado dest=0 dato=0xffab t_env=0 t_rx=35985000 lat=0 res=COMPLETADO
+[35985000] Creado dest=2 dato=0xffab t_env=0 t_rx=35985000 lat=0 res=COMPLETADO
+[35985000] Creado dest=3 dato=0xffab t_env=0 t_rx=35985000 lat=0 res=COMPLETADO
+[35985000] cerrado dest=0 dato=0xffab t_env=34585000 t_rx=35985000 lat=1400000 res=COMPLETADO
+[35985000] cerrado dest=2 dato=0xffab t_env=34585000 t_rx=35985000 lat=1400000 res=COMPLETADO
+[35985000] cerrado dest=3 dato=0xffab t_env=34585000 t_rx=35985000 lat=1400000 res=COMPLETADO
+[36075000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0xab63 -> D_pop=0x63
+[36245000] [DRIVER] id=2 origen=2 destino=178 tipo=INVALIDA payload=0x5378 -> D_pop=0xb278
+[36385000] Creado dest=0 dato=0xff87 t_env=0 t_rx=36385000 lat=0 res=COMPLETADO
+[36385000] Creado dest=1 dato=0xff87 t_env=0 t_rx=36385000 lat=0 res=COMPLETADO
+[36385000] Creado dest=2 dato=0xff87 t_env=0 t_rx=36385000 lat=0 res=COMPLETADO
+[36385000] cerrado dest=0 dato=0xff87 t_env=34915000 t_rx=36385000 lat=1470000 res=COMPLETADO
+[36385000] cerrado dest=1 dato=0xff87 t_env=34915000 t_rx=36385000 lat=1470000 res=COMPLETADO
+[36385000] cerrado dest=2 dato=0xff87 t_env=34915000 t_rx=36385000 lat=1470000 res=COMPLETADO
+[36485000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0xcb21 -> D_pop=0xff21
+[36685000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0xf275 -> D_pop=0xff75
+[36785000] Creado dest=0 dato=0x6a t_env=0 t_rx=36785000 lat=0 res=COMPLETADO
+[36785000] cerrado dest=0 dato=0x6a t_env=35325000 t_rx=36785000 lat=1460000 res=COMPLETADO
+[36975000] [DRIVER] id=1 origen=1 destino=2 tipo=VALIDA payload=0x4212 -> D_pop=0x212
+[37185000] Creado dest=0 dato=0xff1f t_env=0 t_rx=37185000 lat=0 res=COMPLETADO
+[37185000] Creado dest=1 dato=0xff1f t_env=0 t_rx=37185000 lat=0 res=COMPLETADO
+[37185000] Creado dest=2 dato=0xff1f t_env=0 t_rx=37185000 lat=0 res=COMPLETADO
+[37185000] cerrado dest=0 dato=0xff1f t_env=35735000 t_rx=37185000 lat=1450000 res=COMPLETADO
+[37185000] cerrado dest=1 dato=0xff1f t_env=35735000 t_rx=37185000 lat=1450000 res=COMPLETADO
+[37185000] cerrado dest=2 dato=0xff1f t_env=35735000 t_rx=37185000 lat=1450000 res=COMPLETADO
+[37335000] [DRIVER] id=3 origen=3 destino=255 tipo=BROADCAST payload=0x6660 -> D_pop=0xff60
+[37385000] Creado dest=2 dato=0x231 t_env=0 t_rx=37385000 lat=0 res=COMPLETADO
+[37385000] cerrado dest=2 dato=0x231 t_env=35895000 t_rx=37385000 lat=1490000 res=COMPLETADO
+[37585000] Creado dest=0 dato=0x63 t_env=0 t_rx=37585000 lat=0 res=COMPLETADO
+[37585000] cerrado dest=0 dato=0x63 t_env=36075000 t_rx=37585000 lat=1510000 res=COMPLETADO
+[37595000] [DRIVER] id=0 origen=0 destino=2 tipo=VALIDA payload=0x415c -> D_pop=0x25c
+[37755000] [DRIVER] id=1 origen=1 destino=204 tipo=INVALIDA payload=0x80d5 -> D_pop=0xccd5
+[37985000] Creado dest=0 dato=0xff21 t_env=0 t_rx=37985000 lat=0 res=COMPLETADO
+[37985000] Creado dest=1 dato=0xff21 t_env=0 t_rx=37985000 lat=0 res=COMPLETADO
+[37985000] Creado dest=2 dato=0xff21 t_env=0 t_rx=37985000 lat=0 res=COMPLETADO
+[37985000] cerrado dest=0 dato=0xff21 t_env=36485000 t_rx=37985000 lat=1500000 res=COMPLETADO
+[37985000] cerrado dest=1 dato=0xff21 t_env=36485000 t_rx=37985000 lat=1500000 res=COMPLETADO
+[37985000] cerrado dest=2 dato=0xff21 t_env=36485000 t_rx=37985000 lat=1500000 res=COMPLETADO
+[38185000] Creado dest=1 dato=0xff75 t_env=0 t_rx=38185000 lat=0 res=COMPLETADO
+[38185000] Creado dest=2 dato=0xff75 t_env=0 t_rx=38185000 lat=0 res=COMPLETADO
+[38185000] Creado dest=3 dato=0xff75 t_env=0 t_rx=38185000 lat=0 res=COMPLETADO
+[38185000] cerrado dest=1 dato=0xff75 t_env=36685000 t_rx=38185000 lat=1500000 res=COMPLETADO
+[38185000] cerrado dest=2 dato=0xff75 t_env=36685000 t_rx=38185000 lat=1500000 res=COMPLETADO
+[38185000] cerrado dest=3 dato=0xff75 t_env=36685000 t_rx=38185000 lat=1500000 res=COMPLETADO
+[38235000] [DRIVER] id=0 origen=0 destino=228 tipo=INVALIDA payload=0xa18f -> D_pop=0xe48f
+[38385000] Creado dest=2 dato=0x212 t_env=0 t_rx=38385000 lat=0 res=COMPLETADO
+[38385000] cerrado dest=2 dato=0x212 t_env=36975000 t_rx=38385000 lat=1410000 res=COMPLETADO
+[38585000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0x14e4 -> D_pop=0x3e4
+[38595000] Creado dest=0 dato=0xff60 t_env=0 t_rx=38595000 lat=0 res=COMPLETADO
+[38595000] Creado dest=1 dato=0xff60 t_env=0 t_rx=38595000 lat=0 res=COMPLETADO
+[38595000] Creado dest=2 dato=0xff60 t_env=0 t_rx=38595000 lat=0 res=COMPLETADO
+[38595000] cerrado dest=0 dato=0xff60 t_env=37335000 t_rx=38595000 lat=1260000 res=COMPLETADO
+[38595000] cerrado dest=1 dato=0xff60 t_env=37335000 t_rx=38595000 lat=1260000 res=COMPLETADO
+[38595000] cerrado dest=2 dato=0xff60 t_env=37335000 t_rx=38595000 lat=1260000 res=COMPLETADO
+[38795000] Creado dest=2 dato=0x25c t_env=0 t_rx=38795000 lat=0 res=COMPLETADO
+[38795000] cerrado dest=2 dato=0x25c t_env=37595000 t_rx=38795000 lat=1200000 res=COMPLETADO
+[38865000] [DRIVER] id=0 origen=0 destino=1 tipo=VALIDA payload=0x6179 -> D_pop=0x179
+[39185000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xcbd8 -> D_pop=0xffd8
+[39355000] [DRIVER] id=0 origen=0 destino=3 tipo=VALIDA payload=0x4f82 -> D_pop=0x382
+[39425000] Creado dest=3 dato=0x3e4 t_env=0 t_rx=39425000 lat=0 res=COMPLETADO
+[39425000] cerrado dest=3 dato=0x3e4 t_env=38585000 t_rx=39425000 lat=840000 res=COMPLETADO
+[39505000] [DRIVER] id=1 origen=1 destino=0 tipo=VALIDA payload=0x3e8a -> D_pop=0x8a
+[39655000] Creado dest=1 dato=0x179 t_env=0 t_rx=39655000 lat=0 res=COMPLETADO
+[39655000] cerrado dest=1 dato=0x179 t_env=38865000 t_rx=39655000 lat=790000 res=COMPLETADO
+[39795000] [DRIVER] id=0 origen=0 destino=255 tipo=BROADCAST payload=0x97fc -> D_pop=0xfffc
+[39855000] Creado dest=0 dato=0xffd8 t_env=0 t_rx=39855000 lat=0 res=COMPLETADO
+[39855000] Creado dest=2 dato=0xffd8 t_env=0 t_rx=39855000 lat=0 res=COMPLETADO
+[39855000] Creado dest=3 dato=0xffd8 t_env=0 t_rx=39855000 lat=0 res=COMPLETADO
+[39855000] cerrado dest=0 dato=0xffd8 t_env=39185000 t_rx=39855000 lat=670000 res=COMPLETADO
+[39855000] cerrado dest=2 dato=0xffd8 t_env=39185000 t_rx=39855000 lat=670000 res=COMPLETADO
+[39855000] cerrado dest=3 dato=0xffd8 t_env=39185000 t_rx=39855000 lat=670000 res=COMPLETADO
+[40085000] [DRIVER] id=1 origen=1 destino=195 tipo=INVALIDA payload=0x4728 -> D_pop=0xc328
+[40085000] Creado dest=3 dato=0x382 t_env=0 t_rx=40085000 lat=0 res=COMPLETADO
+[40085000] cerrado dest=3 dato=0x382 t_env=39355000 t_rx=40085000 lat=730000 res=COMPLETADO
+[40285000] Creado dest=0 dato=0x8a t_env=0 t_rx=40285000 lat=0 res=COMPLETADO
+[40285000] cerrado dest=0 dato=0x8a t_env=39505000 t_rx=40285000 lat=780000 res=COMPLETADO
+[40325000] [DRIVER] id=0 origen=0 destino=3 tipo=VALIDA payload=0xb7b4 -> D_pop=0x3b4
+[40395000] [DRIVER] id=1 origen=1 destino=3 tipo=VALIDA payload=0xe908 -> D_pop=0x308
+[40515000] Creado dest=1 dato=0xfffc t_env=0 t_rx=40515000 lat=0 res=COMPLETADO
+[40515000] Creado dest=2 dato=0xfffc t_env=0 t_rx=40515000 lat=0 res=COMPLETADO
+[40515000] Creado dest=3 dato=0xfffc t_env=0 t_rx=40515000 lat=0 res=COMPLETADO
+[40515000] cerrado dest=1 dato=0xfffc t_env=39795000 t_rx=40515000 lat=720000 res=COMPLETADO
+[40515000] cerrado dest=2 dato=0xfffc t_env=39795000 t_rx=40515000 lat=720000 res=COMPLETADO
+[40515000] cerrado dest=3 dato=0xfffc t_env=39795000 t_rx=40515000 lat=720000 res=COMPLETADO
+[40825000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x4e4b -> D_pop=0xff4b
+[40945000] Creado dest=3 dato=0x3b4 t_env=0 t_rx=40945000 lat=0 res=COMPLETADO
+[40945000] cerrado dest=3 dato=0x3b4 t_env=40325000 t_rx=40945000 lat=620000 res=COMPLETADO
+[41145000] Creado dest=3 dato=0x308 t_env=0 t_rx=41145000 lat=0 res=COMPLETADO
+[41145000] cerrado dest=3 dato=0x308 t_env=40395000 t_rx=41145000 lat=750000 res=COMPLETADO
+[41195000] [DRIVER] id=1 origen=1 destino=80 tipo=INVALIDA payload=0x3384 -> D_pop=0x5084
+[41395000] Creado dest=0 dato=0xff4b t_env=0 t_rx=41395000 lat=0 res=COMPLETADO
+[41395000] Creado dest=2 dato=0xff4b t_env=0 t_rx=41395000 lat=0 res=COMPLETADO
+[41395000] Creado dest=3 dato=0xff4b t_env=0 t_rx=41395000 lat=0 res=COMPLETADO
+[41395000] cerrado dest=0 dato=0xff4b t_env=40825000 t_rx=41395000 lat=570000 res=COMPLETADO
+[41395000] cerrado dest=2 dato=0xff4b t_env=40825000 t_rx=41395000 lat=570000 res=COMPLETADO
+[41395000] cerrado dest=3 dato=0xff4b t_env=40825000 t_rx=41395000 lat=570000 res=COMPLETADO
+[41585000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0x2743 -> D_pop=0xff43
+[41795000] [DRIVER] id=1 origen=1 destino=2 tipo=VALIDA payload=0x5aba -> D_pop=0x2ba
+[41895000] Creado dest=0 dato=0xff43 t_env=0 t_rx=41895000 lat=0 res=COMPLETADO
+[41895000] Creado dest=2 dato=0xff43 t_env=0 t_rx=41895000 lat=0 res=COMPLETADO
+[41895000] Creado dest=3 dato=0xff43 t_env=0 t_rx=41895000 lat=0 res=COMPLETADO
+[41895000] cerrado dest=0 dato=0xff43 t_env=41585000 t_rx=41895000 lat=310000 res=COMPLETADO
+[41895000] cerrado dest=2 dato=0xff43 t_env=41585000 t_rx=41895000 lat=310000 res=COMPLETADO
+[41895000] cerrado dest=3 dato=0xff43 t_env=41585000 t_rx=41895000 lat=310000 res=COMPLETADO
+[41965000] [DRIVER] id=1 origen=1 destino=255 tipo=BROADCAST payload=0xdfc6 -> D_pop=0xffc6
+[42145000] Creado dest=2 dato=0x2ba t_env=0 t_rx=42145000 lat=0 res=COMPLETADO
+[42145000] cerrado dest=2 dato=0x2ba t_env=41795000 t_rx=42145000 lat=350000 res=COMPLETADO
+[42335000] [DRIVER] id=1 origen=1 destino=182 tipo=INVALIDA payload=0xbd74 -> D_pop=0xb674
+[42395000] Creado dest=0 dato=0xffc6 t_env=0 t_rx=42395000 lat=0 res=COMPLETADO
+[42395000] Creado dest=2 dato=0xffc6 t_env=0 t_rx=42395000 lat=0 res=COMPLETADO
+[42395000] Creado dest=3 dato=0xffc6 t_env=0 t_rx=42395000 lat=0 res=COMPLETADO
+[42395000] cerrado dest=0 dato=0xffc6 t_env=41965000 t_rx=42395000 lat=430000 res=COMPLETADO
+[42395000] cerrado dest=2 dato=0xffc6 t_env=41965000 t_rx=42395000 lat=430000 res=COMPLETADO
+[42395000] cerrado dest=3 dato=0xffc6 t_env=41965000 t_rx=42395000 lat=430000 res=COMPLETADO
+[42475000] [DRIVER] id=1 origen=1 destino=171 tipo=INVALIDA payload=0x61b4 -> D_pop=0xabb4
+[40002170000] [TEST] Cobertura arbitraje: 85.4%
+=================================================
+[40002170000] [TEST] Prueba finalizada.
+=================================================
+$finish called from file "tb/test.sv", line 154.
+$finish at simulation time          40002170000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 40002170000 ps
+CPU Time:     25.050 seconds;       Data structure size:   0.7Mb
+Wed Sep 30 22:08:26 2026
